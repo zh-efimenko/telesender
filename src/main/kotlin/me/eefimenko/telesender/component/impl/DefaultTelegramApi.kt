@@ -14,12 +14,10 @@ import me.eefimenko.telesender.model.telegram.response.Update
 import me.eefimenko.telesender.model.telegram.response.User
 import mu.KotlinLogging
 import org.apache.http.HttpHeaders
-import org.springframework.stereotype.Component
 
 /**
  * @author Yauheni Yefimenka
  */
-@Component
 class DefaultTelegramApi(
 	private val unirest: UnirestInstance
 ) : TelegramApi {

@@ -7,14 +7,12 @@ import mu.KotlinLogging
 import org.springframework.boot.context.event.ApplicationReadyEvent
 import org.springframework.context.ApplicationEventPublisher
 import org.springframework.context.ApplicationListener
-import org.springframework.stereotype.Component
 import java.util.concurrent.TimeUnit
 import javax.annotation.PreDestroy
 
 /**
  * @author Yauheni Yefimenka
  */
-@Component
 class DefaultTelegramPollingClient(
 	private val telegramApi: TelegramApi,
 	private val eventPublisher: ApplicationEventPublisher
