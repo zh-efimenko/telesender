@@ -1,9 +1,9 @@
-package me.eefimenko.telesender.model.telegram.response
+package me.eefimenko.telesender.model.telegram.request
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import me.eefimenko.telesender.model.telegram.response.inline.CallbackQuery
-import me.eefimenko.telesender.model.telegram.response.inline.ChosenInlineResult
-import me.eefimenko.telesender.model.telegram.response.inline.InlineQuery
+import me.eefimenko.telesender.model.telegram.request.inline.CallbackQuery
+import me.eefimenko.telesender.model.telegram.request.inline.ChosenInlineResult
+import me.eefimenko.telesender.model.telegram.request.inline.InlineQuery
 
 data class Update(
 

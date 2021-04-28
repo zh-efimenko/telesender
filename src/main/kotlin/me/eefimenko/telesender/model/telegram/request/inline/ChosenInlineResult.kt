@@ -1,8 +1,8 @@
-package me.eefimenko.telesender.model.telegram.response.inline
+package me.eefimenko.telesender.model.telegram.request.inline
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import me.eefimenko.telesender.model.telegram.response.Location
-import me.eefimenko.telesender.model.telegram.response.User
+import me.eefimenko.telesender.model.telegram.request.Location
+import me.eefimenko.telesender.model.telegram.request.User
 
 /**
  * Note: It is necessary to enable inline feedback via @Botfather in order to receive these objects in updates.

@@ -1,4 +1,4 @@
-package me.eefimenko.telesender.model.telegram.request.keyboard
+package me.eefimenko.telesender.model.telegram.response.keyboard
 
 import com.fasterxml.jackson.annotation.JsonProperty
 

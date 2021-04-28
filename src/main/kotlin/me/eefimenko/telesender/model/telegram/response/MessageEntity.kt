@@ -1,8 +1,8 @@
-package me.eefimenko.telesender.model.telegram.request
+package me.eefimenko.telesender.model.telegram.response
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
-import me.eefimenko.telesender.model.telegram.response.User
+import me.eefimenko.telesender.model.telegram.request.User
 
 /**
  * @author Yauheni Yefimenka

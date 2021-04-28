@@ -1,4 +1,4 @@
-package me.eefimenko.telesender.model.telegram.request.inline
+package me.eefimenko.telesender.model.telegram.response.inline
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
@@ -6,9 +6,9 @@ import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import com.fasterxml.jackson.databind.ser.std.StdSerializer
-import me.eefimenko.telesender.model.telegram.request.MessageEntity
-import me.eefimenko.telesender.model.telegram.request.dictionary.ParseMode
-import me.eefimenko.telesender.model.telegram.request.keyboard.InlineKeyboardMarkup
+import me.eefimenko.telesender.model.telegram.response.MessageEntity
+import me.eefimenko.telesender.model.telegram.response.dictionary.ParseMode
+import me.eefimenko.telesender.model.telegram.response.keyboard.InlineKeyboardMarkup
 
 /**
  * Represents a link to a file. By default, this file will be sent by the user with an optional caption.

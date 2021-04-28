@@ -1,10 +1,10 @@
 package me.eefimenko.telesender.component
 
-import me.eefimenko.telesender.model.telegram.request.SendMessage
-import me.eefimenko.telesender.model.telegram.request.inline.AnswerInlineQuery
-import me.eefimenko.telesender.model.telegram.response.Message
-import me.eefimenko.telesender.model.telegram.response.Update
-import me.eefimenko.telesender.model.telegram.response.User
+import me.eefimenko.telesender.model.telegram.response.SendMessage
+import me.eefimenko.telesender.model.telegram.response.inline.AnswerInlineQuery
+import me.eefimenko.telesender.model.telegram.request.Message
+import me.eefimenko.telesender.model.telegram.request.Update
+import me.eefimenko.telesender.model.telegram.request.User
 
 /**
  * @author Yauheni Yefimenka

@@ -1,8 +1,8 @@
-package me.eefimenko.telesender.model.telegram.response.inline
+package me.eefimenko.telesender.model.telegram.request.inline
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import me.eefimenko.telesender.model.telegram.response.Message
-import me.eefimenko.telesender.model.telegram.response.User
+import me.eefimenko.telesender.model.telegram.request.Message
+import me.eefimenko.telesender.model.telegram.request.User
 
 /**
  * NOTE: After the user presses a callback button, Telegram clients will display a progress bar until

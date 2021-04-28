@@ -1,4 +1,4 @@
-package me.eefimenko.telesender.model.telegram.request.dictionary
+package me.eefimenko.telesender.model.telegram.response.dictionary
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.SerializerProvider
