@@ -6,7 +6,7 @@ import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.SerializerProvider
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import com.fasterxml.jackson.databind.ser.std.StdSerializer
-import me.eefimenko.telesender.model.telegram.response.MessageEntity
+import me.eefimenko.telesender.model.telegram.MessageEntity
 import me.eefimenko.telesender.model.telegram.response.dictionary.ParseMode
 import me.eefimenko.telesender.model.telegram.response.keyboard.InlineKeyboardMarkup
 

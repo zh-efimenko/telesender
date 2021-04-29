@@ -1,4 +1,4 @@
-package me.eefimenko.telesender.model.telegram.response
+package me.eefimenko.telesender.model.telegram
 
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty

@@ -3,6 +3,7 @@ package me.eefimenko.telesender.model.telegram.response
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import me.eefimenko.telesender.model.telegram.MessageEntity
 import me.eefimenko.telesender.model.telegram.response.dictionary.ParseMode
 import me.eefimenko.telesender.model.telegram.response.keyboard.ReplyMarkup
 
