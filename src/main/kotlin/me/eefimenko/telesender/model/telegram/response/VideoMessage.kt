@@ -120,8 +120,8 @@ data class VideoMessage(
 ) {
 
 	init {
-		require(video !is File || video !is String)
-		thumb?.let { require(it !is File || it !is String) }
+		require(video is File || video is String)
+		thumb?.let { require(it is File || it is String) }
 	}
 
 	fun videoIsFile(): Boolean = video is File

@@ -103,8 +103,8 @@ data class DocumentMessage(
 ) {
 
 	init {
-		require(document !is File || document !is String)
-		thumb?.let { require(it !is File || it !is String) }
+		require(document is File || document is String)
+		thumb?.let { require(it is File || it is String) }
 	}
 
 	fun documentIsFile(): Boolean = document is File

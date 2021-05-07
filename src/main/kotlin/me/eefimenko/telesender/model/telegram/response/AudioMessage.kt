@@ -114,8 +114,8 @@ data class AudioMessage(
 ) {
 
 	init {
-		require(audio !is File || audio !is String)
-		thumb?.let { require(it !is File || it !is String) }
+		require(audio is File || audio is String)
+		thumb?.let { require(it is File || it is String) }
 	}
 
 	fun audioIsFile(): Boolean = audio is File

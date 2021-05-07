@@ -114,8 +114,8 @@ data class AnimationMessage(
 ) {
 
 	init {
-		require(animation !is File || animation !is String)
-		thumb?.let { require(it !is File || it !is String) }
+		require(animation is File || animation is String)
+		thumb?.let { require(it is File || it is String) }
 	}
 
 	fun animationIsFile(): Boolean = animation is File

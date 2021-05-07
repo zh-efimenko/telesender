@@ -87,7 +87,7 @@ data class VoiceMessage(
 ) {
 
 	init {
-		require(voice !is File || voice !is String)
+		require(voice is File || voice is String)
 	}
 
 	fun voiceIsFile(): Boolean = voice is File

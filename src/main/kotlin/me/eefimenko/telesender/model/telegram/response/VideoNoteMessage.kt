@@ -85,8 +85,8 @@ class VideoNoteMessage(
 ) {
 
 	init {
-		require(videoNote !is File || videoNote !is String)
-		thumb?.let { require(it !is File || it !is String) }
+		require(videoNote is File || videoNote is String)
+		thumb?.let { require(it is File || it is String) }
 	}
 
 	fun videoNoteIsFile(): Boolean = videoNote is File

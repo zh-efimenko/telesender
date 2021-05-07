@@ -83,7 +83,7 @@ data class PhotoMessage(
 ) {
 
 	init {
-		require(photo !is File || photo !is String)
+		require(photo is File || photo is String)
 	}
 
 	fun photoIsFile(): Boolean = photo is File
