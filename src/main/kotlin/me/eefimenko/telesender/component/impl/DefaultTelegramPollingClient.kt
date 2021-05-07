@@ -58,7 +58,7 @@ class DefaultTelegramPollingClient(
 					offset = updates.last().updateId + 1
 				} catch (e: Exception) {
 					log.error("Exception during polling messages", e)
-					TimeUnit.SECONDS.sleep(1000)
+					TimeUnit.SECONDS.sleep(100)
 				}
 			}
 		}
