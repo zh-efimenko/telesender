@@ -206,28 +206,6 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendVenue(venueMessage: VenueMessage): Message {
-		val request = unirest
-			.post("/sendVenue")
-			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
-			.body(venueMessage)
-		val response = request
-			.asObject(object : GenericType<Response<Message>>() {})
-
-		return this.handleResponse(response)
-	}
-
-	override fun sendPoll(pollMessage: PollMessage): Message {
-		val request = unirest
-			.post("/sendPoll")
-			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
-			.body(pollMessage)
-		val response = request
-			.asObject(object : GenericType<Response<Message>>() {})
-
-		return this.handleResponse(response)
-	}
-
 	override fun sendLocation(locationMessage: LocationMessage): Message {
 		val request = unirest
 			.post("/sendLocation")
@@ -239,11 +217,35 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
+	override fun sendVenue(venueMessage: VenueMessage): Message {
+		val request = unirest
+			.post("/sendVenue")
+			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
+			.body(venueMessage)
+		val response = request
+			.asObject(object : GenericType<Response<Message>>() {})
+
+		return this.handleResponse(response)
+	}
+
 	override fun sendContact(contactMessage: ContactMessage): Message {
+		val values =
+			jacksonObjectMapper().convertValue(contactMessage, object : TypeReference<MutableMap<String, Any>>() {})
+
 		val request = unirest
 			.post("/sendContact")
+			.fields(values)
+		val response = request
+			.asObject(object : GenericType<Response<Message>>() {})
+
+		return this.handleResponse(response)
+	}
+
+	override fun sendPoll(pollMessage: PollMessage): Message {
+		val request = unirest
+			.post("/sendPoll")
 			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
-			.body(contactMessage)
+			.body(pollMessage)
 		val response = request
 			.asObject(object : GenericType<Response<Message>>() {})
 

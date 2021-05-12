@@ -93,13 +93,25 @@ interface TelegramApi {
 
 	fun sendMediaGroup(mediaGroupMessage: MediaGroupMessage): List<Message>
 
-	fun sendVenue(venueMessage: VenueMessage): Message
-
-	fun sendPoll(pollMessage: PollMessage): Message
-
+	/**
+	 * Use this method to send point on the map. On success, the sent Message is returned.
+	 */
 	fun sendLocation(locationMessage: LocationMessage): Message
 
+	/**
+	 * Use this method to send information about a venue. On success, the sent Message is returned.
+	 */
+	fun sendVenue(venueMessage: VenueMessage): Message
+
+	/**
+	 * Use this method to send phone contacts. On success, the sent Message is returned.
+	 */
 	fun sendContact(contactMessage: ContactMessage): Message
+
+	/**
+	 * Use this method to send a native poll. On success, the sent Message is returned.
+	 */
+	fun sendPoll(pollMessage: PollMessage): Message
 
 	fun getUserProfilePhotos(getUserProfilePhotosMessage: GetUserProfilePhotosMessage): UserProfilePhotos
 

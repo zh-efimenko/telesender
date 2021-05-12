@@ -5,6 +5,10 @@ import me.eefimenko.telesender.model.telegram.request.inline.CallbackQuery
 import me.eefimenko.telesender.model.telegram.request.inline.ChosenInlineResult
 import me.eefimenko.telesender.model.telegram.request.inline.InlineQuery
 
+/**
+ * This object represents an incoming update.
+ * At most one of the optional parameters can be present in any given update.
+ */
 data class Update(
 
 	/**
@@ -58,6 +62,19 @@ data class Update(
 	 * Optional. New incoming callback query
 	 */
 	@JsonProperty("callback_query")
-	val callbackQuery: CallbackQuery? = null
+	val callbackQuery: CallbackQuery? = null,
+
+	/**
+	 * Optional. New poll state. Bots receive only updates about stopped polls and polls, which are sent by the bot
+	 */
+	@JsonProperty("poll")
+	val poll: Poll? = null,
+
+	/**
+	 * Optional. A user changed their answer in a non-anonymous poll.
+	 * Bots receive new votes only in polls that were sent by the bot itself.
+	 */
+	@JsonProperty("poll_answer")
+	val pollAnswer: PollAnswer? = null
 
 )
