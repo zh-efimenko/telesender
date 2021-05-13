@@ -1,7 +1,9 @@
 package me.eefimenko.telesender.model.telegram.request
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import me.eefimenko.telesender.model.telegram.MessageEntity
+import me.eefimenko.telesender.model.telegram.PollType
 
 /**
  * This object contains information about a poll.
@@ -48,7 +50,8 @@ data class Poll(
 	 * Poll type, currently can be “regular” or “quiz”
 	 */
 	@JsonProperty("type")
-	val type: String,
+	@get:JsonDeserialize(using = PollType.PollTypDeserializer::class)
+	val type: PollType,
 
 	/**
 	 * True, if the poll allows multiple answers

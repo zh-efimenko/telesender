@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import me.eefimenko.telesender.model.telegram.MessageEntity
+import me.eefimenko.telesender.model.telegram.PollType
 import me.eefimenko.telesender.model.telegram.response.dictionary.ParseMode
 import me.eefimenko.telesender.model.telegram.response.keyboard.ReplyMarkup
 
@@ -42,7 +43,8 @@ data class PollMessage(
 	 * Optional. Poll type, “quiz” or “regular”, defaults to “regular”
 	 */
 	@get:JsonProperty("type")
-	val type: String? = null,
+	@get:JsonSerialize(using = PollType.PollTypeSerializer::class)
+	val type: PollType? = null,
 
 	/**
 	 * Optional. True, if the poll allows multiple answers, ignored for polls in quiz mode, defaults to False
