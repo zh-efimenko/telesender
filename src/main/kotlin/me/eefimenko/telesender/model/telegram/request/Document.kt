@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * This object represents a general file (as opposed to photos, voice messages and audio files).
+ *
+ * @author Yauheni Yefimenka
  */
 data class Document(
 

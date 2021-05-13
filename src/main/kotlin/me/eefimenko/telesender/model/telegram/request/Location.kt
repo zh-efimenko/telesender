@@ -3,11 +3,11 @@ package me.eefimenko.telesender.model.telegram.request
 import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
- * @author Yauheni Yefimenka
- *
  * This object represents a point on the map.
+ *
+ * @author Yauheni Yefimenka
  */
-class Location(
+data class Location(
 
 	/**
 	 * Longitude as defined by sender.

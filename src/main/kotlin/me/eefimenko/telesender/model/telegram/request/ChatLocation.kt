@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * Represents a location to which a chat is connected.
+ *
+ * @author Yauheni Yefimenka
  */
 data class ChatLocation(
 

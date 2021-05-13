@@ -95,13 +95,9 @@ class InlineQueryResultDocument(
 		PDF("application/pdf");
 
 		class DocTypeSerializer : StdSerializer<DocType>(DocType::class.java) {
-
 			override fun serialize(value: DocType, generator: JsonGenerator, provider: SerializerProvider) {
 				generator.writeString(value.value)
 			}
-
 		}
-
 	}
-
 }

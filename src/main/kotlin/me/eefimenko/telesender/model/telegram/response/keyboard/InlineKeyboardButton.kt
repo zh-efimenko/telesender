@@ -4,9 +4,9 @@ import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
- * @author Yauheni Yefimenka
- *
  * This object represents one button of an inline keyboard. You must use exactly one of the optional fields.
+ *
+ * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class InlineKeyboardButton(

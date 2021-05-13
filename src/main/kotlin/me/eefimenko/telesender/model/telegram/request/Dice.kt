@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * This object represents an animated emoji that displays a random value.
+ *
+ * @author Yauheni Yefimenka
  */
 data class Dice(
 

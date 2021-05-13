@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * This object contains information about one answer option in a poll.
+ *
+ * @author Yauheni Yefimenka
  */
 data class PollOption(
 

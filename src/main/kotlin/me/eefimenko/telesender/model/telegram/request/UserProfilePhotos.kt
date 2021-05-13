@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * This object represent a user's profile pictures.
+ *
+ * @author Yauheni Yefimenka
  */
 data class UserProfilePhotos(
 

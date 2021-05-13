@@ -7,9 +7,9 @@ import me.eefimenko.telesender.model.telegram.MessageEntity
 import me.eefimenko.telesender.model.telegram.response.dictionary.ParseMode
 
 /**
- * @author Yauheni Yefimenka
- *
  * Represents the content of a text message to be sent as the result of an inline query.
+ *
+ * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 class InputTextMessageContent(

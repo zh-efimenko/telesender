@@ -7,6 +7,8 @@ import me.eefimenko.telesender.model.telegram.PollType
 
 /**
  * This object contains information about a poll.
+ *
+ * @author Yauheni Yefimenka
  */
 data class Poll(
 

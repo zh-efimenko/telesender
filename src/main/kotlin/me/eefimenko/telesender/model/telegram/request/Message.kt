@@ -5,6 +5,9 @@ import me.eefimenko.telesender.model.telegram.MessageEntity
 import me.eefimenko.telesender.model.telegram.response.keyboard.InlineKeyboardMarkup
 import java.util.*
 
+/**
+ * @author Yauheni Yefimenka
+ */
 data class Message(
 
 	/**

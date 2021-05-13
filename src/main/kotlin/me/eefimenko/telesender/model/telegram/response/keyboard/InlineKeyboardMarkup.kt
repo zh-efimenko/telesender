@@ -3,9 +3,9 @@ package me.eefimenko.telesender.model.telegram.response.keyboard
 import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
- * @author Yauheni Yefimenka
- *
  * This object represents an inline keyboard that appears right next to the message it belongs to.
+ *
+ * @author Yauheni Yefimenka
  */
 class InlineKeyboardMarkup(
 	answers: List<InlineKeyboardButton>,

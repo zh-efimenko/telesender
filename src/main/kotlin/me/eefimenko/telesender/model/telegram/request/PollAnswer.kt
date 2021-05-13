@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * This object represents an answer of a user in a non-anonymous poll.
+ *
+ * @author Yauheni Yefimenka
  */
 data class PollAnswer(
 

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * This object represents a video message (available in Telegram apps as of v.4.0).
+ *
+ * @author Yauheni Yefimenka
  */
 data class VideoNote(
 

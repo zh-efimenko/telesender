@@ -14,11 +14,8 @@ enum class ParseMode(val value: String) {
 	HTML("HTML");
 
 	class ParseModeSerializer : StdSerializer<ParseMode>(ParseMode::class.java) {
-
 		override fun serialize(mode: ParseMode, generator: JsonGenerator, provider: SerializerProvider) {
 			generator.writeString(mode.value)
 		}
-
 	}
-
 }

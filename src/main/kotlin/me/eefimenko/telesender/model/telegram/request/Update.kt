@@ -8,6 +8,8 @@ import me.eefimenko.telesender.model.telegram.request.inline.InlineQuery
 /**
  * This object represents an incoming update.
  * At most one of the optional parameters can be present in any given update.
+ *
+ * @author Yauheni Yefimenka
  */
 data class Update(
 

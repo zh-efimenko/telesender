@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * Describes actions that a non-administrator user is allowed to take in a chat.
+ *
+ * @author Yauheni Yefimenka
  */
 data class ChatPermissions(
 

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * This object describes the position on faces where a mask should be placed by default.
+ *
+ * @author Yauheni Yefimenka
  */
 data class MaskPosition(
 

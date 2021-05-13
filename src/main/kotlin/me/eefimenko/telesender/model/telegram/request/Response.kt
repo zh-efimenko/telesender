@@ -2,6 +2,9 @@ package me.eefimenko.telesender.model.telegram.request
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
+/**
+ * @author Yauheni Yefimenka
+ */
 data class Response<T>(
 
 	@JsonProperty("ok")

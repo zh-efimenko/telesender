@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * This object represents one size of a photo or a file / sticker thumbnail.
+ *
+ * @author Yauheni Yefimenka
  */
 data class PhotoSize(
 

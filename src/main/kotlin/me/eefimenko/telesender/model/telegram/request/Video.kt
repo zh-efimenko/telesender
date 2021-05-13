@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
  * This object represents a video file.
+ *
+ * @author Yauheni Yefimenka
  */
 data class Video(
 

@@ -5,10 +5,10 @@ import me.eefimenko.telesender.model.telegram.request.Location
 import me.eefimenko.telesender.model.telegram.request.User
 
 /**
- * @author Yauheni Yefimenka
- *
  * This object represents an incoming inline query. When the user sends an empty query, your bot could
  * return some default or trending results.
+ *
+ * @author Yauheni Yefimenka
  */
 class InlineQuery(
 
