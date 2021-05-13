@@ -1,8 +1,8 @@
 package me.eefimenko.telesender.component
 
-import me.eefimenko.telesender.model.telegram.request.*
-import me.eefimenko.telesender.model.telegram.response.*
-import me.eefimenko.telesender.model.telegram.response.inline.AnswerInlineQuery
+import me.eefimenko.telesender.model.telegram.recieve.*
+import me.eefimenko.telesender.model.telegram.send.*
+import me.eefimenko.telesender.model.telegram.send.inline.AnswerInlineQuery
 
 /**
  * @author Yauheni Yefimenka
