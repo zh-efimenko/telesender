@@ -120,6 +120,9 @@ interface TelegramApi {
 	 */
 	fun sendPoll(message: PollMessage): Message
 
+	/**
+	 * Use this method to get a list of profile pictures for a user. Returns a UserProfilePhotos object.
+	 */
 	fun getUserProfilePhotos(message: GetUserProfilePhotosMessage): UserProfilePhotos
 
 	/**
