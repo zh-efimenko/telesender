@@ -1,4 +1,4 @@
-package me.eefimenko.telesender.model.telegram.request
+package me.eefimenko.telesender.model.telegram.recieve
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import me.eefimenko.telesender.model.telegram.common.MessageEntity
@@ -275,14 +275,7 @@ data class Message(
 	 * not contain further reply_to_message fields even if it is itself a reply.
 	 */
 	@JsonProperty("pinned_message")
-	val pinnedMessage: Message? = null,
-
-	/**
-	 * Optional. Inline keyboard attached to the message.
-	 * login_url buttons are represented as ordinary url buttons.
-	 */
-	@JsonProperty("reply_markup")
-	val replyMarkup: List<InlineKeyboardMarkup>? = null
+	val pinnedMessage: Message? = null
 
 ) {
 
