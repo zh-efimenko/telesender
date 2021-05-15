@@ -1,18 +1,18 @@
-package me.eefimenko.telesender.model.telegram.send
+package me.eefimenko.telesender.model.telegram.send.media
 
-import com.fasterxml.jackson.annotation.JsonInclude
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import me.eefimenko.telesender.model.telegram.common.MessageEntity
 import me.eefimenko.telesender.model.telegram.send.dictionary.ParseMode
 import me.eefimenko.telesender.model.telegram.send.keyboard.ReplyMarkup
+import me.eefimenko.telesender.model.telegram.send.util.mediaStringOrFile
 import java.io.File
 
 /**
  * @author Yauheni Yefimenka
  */
-@JsonInclude(JsonInclude.Include.NON_NULL)
-data class PhotoMessage(
+abstract class Media(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel
@@ -21,28 +21,17 @@ data class PhotoMessage(
 	@get:JsonProperty("chat_id")
 	val chatId: Long,
 
-	/**
-	 * Photo to send. Pass a file_id as String to send a photo that exists on the Telegram servers (recommended),
-	 * pass an HTTP URL as a String for Telegram to get a photo from the Internet,
-	 * or upload a new photo using multipart/form-data. The photo must be at most 10 MB in size.
-	 * The photo's width and height must not exceed 10000 in total. Width and height ratio must be at most 20.
-	 * More info on Sending Files.
-	 *
-	 * Without @JsonProperty due to Jackson cannot serialize File class
-	 *
-	 * Type is String or File
-	 */
-	val photo: Any,
+	media: Any,
+	thumb: Any? = null,
 
 	/**
-	 * Optional. Photo caption (may also be used when resending photos by file_id),
-	 * 0-1024 characters after entities parsing
+	 * Optional. Caption, 0-1024 characters after entities parsing
 	 */
 	@get:JsonProperty("caption")
 	val caption: String? = null,
 
 	/**
-	 * Optional. Mode for parsing entities in the new caption. See formatting options for more details.
+	 * Optional. Mode for parsing entities in the caption. See formatting options for more details.
 	 */
 	@get:JsonProperty("parse_mode")
 	@get:JsonSerialize(using = ParseMode.ParseModeSerializer::class)
@@ -82,10 +71,48 @@ data class PhotoMessage(
 
 ) {
 
-	init {
-		require(photo is File || photo is String)
-	}
+	/**
+	 * Media to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended),
+	 * pass an HTTP URL as a String for Telegram to get a video from the Internet, or upload a new video
+	 * using multipart/form-data.
+	 * More info on Sending Files
+	 */
+	@JsonIgnore
+	protected val media: String
 
-	fun photoIsFile(): Boolean = photo is File
+	/**
+	 * Put file to request as multipart explicit
+	 */
+	@JsonIgnore
+	val mediaFile: File?
+
+	/**
+	 * Optional. Thumbnail of the file sent; can be ignored if thumbnail generation for the file is supported
+	 * server-side. The thumbnail should be in JPEG format and less than 200 kB in size. A thumbnail's
+	 * width and height should not exceed 320. Ignored if the file is not uploaded using multipart/form-data.
+	 * Thumbnails can't be reused and can be only uploaded as a new file,
+	 * so you can pass “attach://<file_attach_name>” if the thumbnail was uploaded using multipart/form-data
+	 * under <file_attach_name>.
+	 * More info on Sending Files
+	 */
+	@JsonProperty("thumb")
+	val thumb: String?
+
+	/**
+	 * Put file to request as multipart explicit
+	 */
+	@JsonIgnore
+	val thumbFile: File?
+
+	init {
+		mediaStringOrFile(media).let {
+			this.media = it.first as String
+			this.mediaFile = it.second
+		}
+		mediaStringOrFile(thumb).let {
+			this.thumb = it.first
+			this.thumbFile = it.second
+		}
+	}
 
 }
