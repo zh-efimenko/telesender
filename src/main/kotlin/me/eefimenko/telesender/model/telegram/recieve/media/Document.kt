@@ -1,13 +1,14 @@
-package me.eefimenko.telesender.model.telegram.recieve
+package me.eefimenko.telesender.model.telegram.recieve.media
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import me.eefimenko.telesender.model.telegram.recieve.PhotoSize
 
 /**
- * This object represents an animation file (GIF or H.264/MPEG-4 AVC video without sound).
+ * This object represents a general file (as opposed to photos, voice messages and audio files).
  *
  * @author Yauheni Yefimenka
  */
-data class Animation(
+data class Document(
 
 	/**
 	 * Identifier for this file, which can be used to download or reuse the file
@@ -23,31 +24,13 @@ data class Animation(
 	val fileUniqueId: String,
 
 	/**
-	 * Video width as defined by sender
-	 */
-	@JsonProperty("width")
-	val width: Int,
-
-	/**
-	 * Video height as defined by sender
-	 */
-	@JsonProperty("height")
-	val height: Int,
-
-	/**
-	 * Duration of the video in seconds as defined by sender
-	 */
-	@JsonProperty("duration")
-	val duration: Int,
-
-	/**
-	 * Optional. Animation thumbnail as defined by sender
+	 * Optional. Document thumbnail as defined by sender
 	 */
 	@JsonProperty("thumb")
 	val thumb: PhotoSize? = null,
 
 	/**
-	 * Optional. Original animation filename as defined by sender
+	 * Optional. Original filename as defined by sender
 	 */
 	@JsonProperty("file_name")
 	val fileName: String? = null,
@@ -63,5 +46,4 @@ data class Animation(
 	 */
 	@JsonProperty("file_size")
 	val fileSize: Int? = null
-
 )

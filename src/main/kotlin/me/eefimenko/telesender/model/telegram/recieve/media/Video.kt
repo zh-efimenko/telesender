@@ -1,13 +1,14 @@
-package me.eefimenko.telesender.model.telegram.recieve
+package me.eefimenko.telesender.model.telegram.recieve.media
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import me.eefimenko.telesender.model.telegram.recieve.PhotoSize
 
 /**
- * This object represents an audio file to be treated as music by the Telegram clients.
+ * This object represents a video file.
  *
  * @author Yauheni Yefimenka
  */
-data class Audio(
+data class Video(
 
 	/**
 	 * Identifier for this file, which can be used to download or reuse the file
@@ -23,25 +24,31 @@ data class Audio(
 	val fileUniqueId: String,
 
 	/**
-	 * Duration of the audio in seconds as defined by sender
+	 * Video width as defined by sender
+	 */
+	@JsonProperty("width")
+	val width: Int,
+
+	/**
+	 * Video height as defined by sender
+	 */
+	@JsonProperty("height")
+	val height: Int,
+
+	/**
+	 * Duration of the video in seconds as defined by sender
 	 */
 	@JsonProperty("duration")
 	val duration: Int,
 
 	/**
-	 * Optional. Performer of the audio as defined by sender or by audio tags
+	 * Optional. Video thumbnail
 	 */
-	@JsonProperty("performer")
-	val performer: String? = null,
+	@JsonProperty("thumb")
+	val thumb: PhotoSize? = null,
 
 	/**
-	 * Optional. Title of the audio as defined by sender or by audio tags
-	 */
-	@JsonProperty("title")
-	val title: String? = null,
-
-	/**
-	 * Optional. Original filename as defined by sender
+	 * Optional. Original animation filename as defined by sender
 	 */
 	@JsonProperty("file_name")
 	val fileName: String? = null,
@@ -56,12 +63,6 @@ data class Audio(
 	 * Optional. File size
 	 */
 	@JsonProperty("file_size")
-	val fileSize: Int? = null,
-
-	/**
-	 * Optional. Thumbnail of the album cover to which the music file belongs
-	 */
-	@JsonProperty("thumb")
-	val thumb: PhotoSize? = null
+	val fileSize: Int? = null
 
 )

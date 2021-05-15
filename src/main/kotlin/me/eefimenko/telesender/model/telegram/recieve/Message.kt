@@ -2,6 +2,7 @@ package me.eefimenko.telesender.model.telegram.request
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import me.eefimenko.telesender.model.telegram.common.MessageEntity
+import me.eefimenko.telesender.model.telegram.recieve.media.*
 import java.util.*
 
 /**

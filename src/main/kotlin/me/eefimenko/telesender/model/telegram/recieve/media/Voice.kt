@@ -1,13 +1,13 @@
-package me.eefimenko.telesender.model.telegram.recieve
+package me.eefimenko.telesender.model.telegram.recieve.media
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
 /**
- * This object represents a general file (as opposed to photos, voice messages and audio files).
+ * This object represents a voice note.
  *
  * @author Yauheni Yefimenka
  */
-data class Document(
+data class Voice(
 
 	/**
 	 * Identifier for this file, which can be used to download or reuse the file
@@ -23,16 +23,10 @@ data class Document(
 	val fileUniqueId: String,
 
 	/**
-	 * Optional. Document thumbnail as defined by sender
+	 * Duration of the audio in seconds as defined by sender
 	 */
-	@JsonProperty("thumb")
-	val thumb: PhotoSize? = null,
-
-	/**
-	 * Optional. Original filename as defined by sender
-	 */
-	@JsonProperty("file_name")
-	val fileName: String? = null,
+	@JsonProperty("duration")
+	val duration: Int,
 
 	/**
 	 * Optional. MIME type of the file as defined by sender
@@ -45,4 +39,5 @@ data class Document(
 	 */
 	@JsonProperty("file_size")
 	val fileSize: Int? = null
+
 )

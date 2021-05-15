@@ -1,7 +1,8 @@
-package me.eefimenko.telesender.model.telegram.recieve
+package me.eefimenko.telesender.model.telegram.recieve.media
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import me.eefimenko.telesender.model.telegram.common.MessageEntity
+import me.eefimenko.telesender.model.telegram.recieve.PhotoSize
 
 /**
  * This object represents a game. Use BotFather to create and edit games,

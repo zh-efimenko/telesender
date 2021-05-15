@@ -1,13 +1,14 @@
-package me.eefimenko.telesender.model.telegram.recieve
+package me.eefimenko.telesender.model.telegram.recieve.media
 
 import com.fasterxml.jackson.annotation.JsonProperty
+import me.eefimenko.telesender.model.telegram.recieve.PhotoSize
 
 /**
- * This object represents a video file.
+ * This object represents a video message (available in Telegram apps as of v.4.0).
  *
  * @author Yauheni Yefimenka
  */
-data class Video(
+data class VideoNote(
 
 	/**
 	 * Identifier for this file, which can be used to download or reuse the file
@@ -23,16 +24,10 @@ data class Video(
 	val fileUniqueId: String,
 
 	/**
-	 * Video width as defined by sender
+	 * Video width and height (diameter of the video message) as defined by sender
 	 */
-	@JsonProperty("width")
-	val width: Int,
-
-	/**
-	 * Video height as defined by sender
-	 */
-	@JsonProperty("height")
-	val height: Int,
+	@JsonProperty("length")
+	val length: Int,
 
 	/**
 	 * Duration of the video in seconds as defined by sender
@@ -41,22 +36,10 @@ data class Video(
 	val duration: Int,
 
 	/**
-	 * Optional. Video thumbnail
+	 * Optional. Animation thumbnail as defined by sender
 	 */
 	@JsonProperty("thumb")
 	val thumb: PhotoSize? = null,
-
-	/**
-	 * Optional. Original animation filename as defined by sender
-	 */
-	@JsonProperty("file_name")
-	val fileName: String? = null,
-
-	/**
-	 * Optional. MIME type of the file as defined by sender
-	 */
-	@JsonProperty("mime_type")
-	val mimeType: String? = null,
 
 	/**
 	 * Optional. File size
