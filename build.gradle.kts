@@ -2,19 +2,15 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
 	java
-	`maven-publish`
-	`java-library`
-	id("org.springframework.boot") version "2.4.1"
+	id("org.springframework.boot") version "2.4.1" apply false
 	id("io.spring.dependency-management") version "1.0.10.RELEASE" apply false
-	kotlin("jvm") version "1.4.21"
-	kotlin("kapt") version "1.4.21"
+	kotlin("jvm") version "1.4.21" apply false
+	kotlin("kapt") version "1.4.21" apply false
 	kotlin("plugin.spring") version "1.4.21" apply false
 }
 
-allprojects {
+subprojects {
 	apply(plugin = "java")
-	apply(plugin = "maven-publish")
-	apply(plugin = "java-library")
 	apply(plugin = "org.springframework.boot")
 	apply(plugin = "io.spring.dependency-management")
 	apply(plugin = "org.jetbrains.kotlin.jvm")
@@ -36,10 +32,6 @@ allprojects {
 		implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
 		implementation("org.jetbrains.kotlin:kotlin-reflect")
 		implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-
-		// DevUtil
-		developmentOnly("org.springframework.boot:spring-boot-devtools")
-		kapt("org.springframework.boot:spring-boot-configuration-processor")
 
 		// Test
 		testImplementation("org.springframework.boot:spring-boot-starter-test")
@@ -67,18 +59,6 @@ allprojects {
 	java {
 		withJavadocJar()
 		withSourcesJar()
-	}
-
-	publishing {
-		publications {
-			create<MavenPublication>("maven") {
-				groupId = project.group as String
-				artifactId = project.name
-				version = project.version as String
-
-				from(components["java"])
-			}
-		}
 	}
 
 }
