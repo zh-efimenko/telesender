@@ -51,7 +51,7 @@ class DefaultTelegramPollingClient(
 
 					// handle updates
 					for (update in updates) {
-						log.info("Got a new event: {}", update)
+						log.debug("Got a new event: {}", update)
 						eventPublisher.publishEvent(TelegramUpdateEvent(update))
 					}
 
