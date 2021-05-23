@@ -14,7 +14,7 @@ interface TelegramApi {
 	/**
 	 * Send any content message
 	 */
-	fun send(message: SendMessage): Any
+	fun send(message: SendMessage?): Any?
 
 	/**
 	 * A simple method for testing your bot's auth token. Requires no parameters.

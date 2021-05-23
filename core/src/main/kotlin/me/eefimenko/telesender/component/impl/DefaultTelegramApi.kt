@@ -25,7 +25,7 @@ class DefaultTelegramApi(
 
 	private val log = KotlinLogging.logger {}
 
-	override fun send(message: SendMessage): Any {
+	override fun send(message: SendMessage?): Any? {
 		return when (message) {
 			is ContactSendMessage -> sendContact(message)
 			is CopySendMessage -> copyMessage(message)
@@ -42,6 +42,7 @@ class DefaultTelegramApi(
 			is VideoSendMessage -> sendVideo(message)
 			is VoiceSendMessage -> sendVoice(message)
 			is MediaGroupSendMessage -> sendMediaGroup(message)
+			null -> null
 			else -> IllegalArgumentException("The follow type is not supported")
 		}
 	}
