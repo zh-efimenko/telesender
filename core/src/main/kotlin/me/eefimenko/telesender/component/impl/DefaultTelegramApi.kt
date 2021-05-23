@@ -12,7 +12,7 @@ import me.eefimenko.telesender.model.telegram.recieve.*
 import me.eefimenko.telesender.model.telegram.send.*
 import me.eefimenko.telesender.model.telegram.send.inline.AnswerInlineQuery
 import me.eefimenko.telesender.model.telegram.send.media.*
-import me.eefimenko.telesender.model.telegram.send.media.group.MediaGroupMessage
+import me.eefimenko.telesender.model.telegram.send.media.group.MediaGroupSendMessage
 import mu.KotlinLogging
 import org.apache.http.HttpHeaders
 
@@ -46,7 +46,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendMessage(message: TextMessage): Message {
+	override fun sendMessage(message: TextSendMessage): Message {
 		val request = unirest
 			.post("/sendMessage")
 			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
@@ -57,7 +57,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun copyMessage(message: CopyMessage): MessageId {
+	override fun copyMessage(message: CopySendMessage): MessageId {
 		val request = unirest
 			.post("/copyMessage")
 			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
@@ -68,7 +68,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun forwardMessage(message: ForwardMessage): Message {
+	override fun forwardMessage(message: ForwardSendMessage): Message {
 		val request = unirest
 			.post("/forwardMessage")
 			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
@@ -79,7 +79,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendPhoto(message: PhotoMessage): Message {
+	override fun sendPhoto(message: PhotoSendMessage): Message {
 		val values =
 			jacksonObjectMapper().convertValue(message, object : TypeReference<MutableMap<String, Any>>() {})
 		message.mediaFile?.let { values[it.name] = it }
@@ -94,7 +94,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendAudio(message: AudioMessage): Message {
+	override fun sendAudio(message: AudioSendMessage): Message {
 		val values =
 			jacksonObjectMapper().convertValue(message, object : TypeReference<MutableMap<String, Any>>() {})
 		message.mediaFile?.let { values[it.name] = it }
@@ -109,7 +109,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendDocument(message: DocumentMessage): Message {
+	override fun sendDocument(message: DocumentSendMessage): Message {
 		val values =
 			jacksonObjectMapper().convertValue(message, object : TypeReference<MutableMap<String, Any>>() {})
 		message.mediaFile?.let { values[it.name] = it }
@@ -124,7 +124,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendVideo(message: VideoMessage): Message {
+	override fun sendVideo(message: VideoSendMessage): Message {
 		val values =
 			jacksonObjectMapper().convertValue(message, object : TypeReference<MutableMap<String, Any>>() {})
 		message.mediaFile?.let { values[it.name] = it }
@@ -139,7 +139,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendAnimation(message: AnimationMessage): Message {
+	override fun sendAnimation(message: AnimationSendMessage): Message {
 		val values =
 			jacksonObjectMapper().convertValue(message, object : TypeReference<MutableMap<String, Any>>() {})
 		message.mediaFile?.let { values[it.name] = it }
@@ -154,7 +154,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendVoice(message: VoiceMessage): Message {
+	override fun sendVoice(message: VoiceSendMessage): Message {
 		val values =
 			jacksonObjectMapper().convertValue(message, object : TypeReference<MutableMap<String, Any>>() {})
 		message.mediaFile?.let { values[it.name] = it }
@@ -169,7 +169,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendVideoNote(message: VideoNoteMessage): Message {
+	override fun sendVideoNote(message: VideoNoteSendMessage): Message {
 		val values =
 			jacksonObjectMapper().convertValue(message, object : TypeReference<MutableMap<String, Any>>() {})
 		message.mediaFile?.let { values[it.name] = it }
@@ -184,7 +184,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendMediaGroup(message: MediaGroupMessage): List<Message> {
+	override fun sendMediaGroup(message: MediaGroupSendMessage): List<Message> {
 		val values =
 			jacksonObjectMapper().convertValue(message, object : TypeReference<MutableMap<String, Any>>() {})
 		message.media.forEach { media ->
@@ -202,7 +202,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendLocation(message: LocationMessage): Message {
+	override fun sendLocation(message: LocationSendMessage): Message {
 		val request = unirest
 			.post("/sendLocation")
 			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
@@ -213,7 +213,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendVenue(message: VenueMessage): Message {
+	override fun sendVenue(message: VenueSendMessage): Message {
 		val request = unirest
 			.post("/sendVenue")
 			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
@@ -224,7 +224,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendContact(message: ContactMessage): Message {
+	override fun sendContact(message: ContactSendMessage): Message {
 		val request = unirest
 			.post("/sendContact")
 			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
@@ -235,7 +235,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun sendPoll(message: PollMessage): Message {
+	override fun sendPoll(message: PollSendMessage): Message {
 		val request = unirest
 			.post("/sendPoll")
 			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
@@ -246,7 +246,7 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
-	override fun getUserProfilePhotos(message: GetUserProfilePhotosMessage): UserProfilePhotos {
+	override fun getUserProfilePhotos(message: GetUserProfilePhotosSendMessage): UserProfilePhotos {
 		val request = unirest
 			.post("/getUserProfilePhotos")
 			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)

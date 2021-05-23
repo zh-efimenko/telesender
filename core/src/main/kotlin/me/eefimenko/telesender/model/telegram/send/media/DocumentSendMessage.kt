@@ -10,34 +10,16 @@ import me.eefimenko.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class VideoMessage(
+class DocumentSendMessage(
 
 	chatId: Long,
-	video: Any,
+	document: Any,
 
 	/**
-	 * Optional. Duration of the video in seconds
+	 * Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data
 	 */
-	@get:JsonProperty("duration")
-	val duration: Int? = null,
-
-	/**
-	 * Optional. Video width
-	 */
-	@get:JsonProperty("width")
-	val width: Int? = null,
-
-	/**
-	 * Optional. Video height
-	 */
-	@get:JsonProperty("height")
-	val height: Int? = null,
-
-	/**
-	 * Optional. Pass True, if the uploaded video is suitable for streaming
-	 */
-	@get:JsonProperty("supports_streaming")
-	val supportsStreaming: Boolean? = null,
+	@get:JsonProperty("disable_content_type_detection")
+	val disableContentTypeDetection: Boolean? = null,
 
 	thumb: Any? = null,
 	caption: String? = null,
@@ -48,9 +30,9 @@ class VideoMessage(
 	allowSendingWithoutReply: Boolean? = null,
 	replyMarkup: ReplyMarkup? = null
 
-) : Media(
+) : MediaSendMessage(
 	chatId,
-	video,
+	document,
 	thumb,
 	caption,
 	parseMode,
@@ -61,7 +43,7 @@ class VideoMessage(
 	replyMarkup
 ) {
 
-	@JsonProperty("video")
-	fun getVideo(): String = media
+	@JsonProperty("document")
+	fun getDocument(): String = media
 
 }

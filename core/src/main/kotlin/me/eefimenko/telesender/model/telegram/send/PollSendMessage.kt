@@ -12,7 +12,7 @@ import me.eefimenko.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class PollMessage(
+data class PollSendMessage(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel
@@ -125,4 +125,4 @@ data class PollMessage(
 	@get:JsonProperty("reply_markup")
 	val replyMarkup: ReplyMarkup? = null
 
-)
+) : SendMessage

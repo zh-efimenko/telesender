@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class GetUserProfilePhotosMessage(
+data class GetUserProfilePhotosSendMessage(
 
 	/**
 	 * Unique identifier of the target user
@@ -27,4 +27,4 @@ data class GetUserProfilePhotosMessage(
 	@get:JsonProperty("limit")
 	val limit: Int? = null
 
-)
+) : SendMessage

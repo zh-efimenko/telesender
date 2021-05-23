@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import me.eefimenko.telesender.model.telegram.common.MessageEntity
+import me.eefimenko.telesender.model.telegram.send.SendMessage
 import me.eefimenko.telesender.model.telegram.send.dictionary.ParseMode
 import me.eefimenko.telesender.model.telegram.send.keyboard.ReplyMarkup
 import me.eefimenko.telesender.model.telegram.send.util.mediaStringOrFile
@@ -12,7 +13,7 @@ import java.io.File
 /**
  * @author Yauheni Yefimenka
  */
-abstract class Media(
+abstract class MediaSendMessage(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel
@@ -69,7 +70,7 @@ abstract class Media(
 	@get:JsonProperty("reply_markup")
 	val replyMarkup: ReplyMarkup? = null
 
-) {
+) : SendMessage {
 
 	/**
 	 * Media to send. Pass a file_id as String to send a video that exists on the Telegram servers (recommended),

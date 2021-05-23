@@ -3,7 +3,7 @@ package me.eefimenko.telesender.filter
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.model.telegram.recieve.Update
-import me.eefimenko.telesender.model.telegram.send.TextMessage
+import me.eefimenko.telesender.model.telegram.send.TextSendMessage
 import java.util.*
 
 /**
@@ -23,7 +23,7 @@ class CancelFilter(private val telegramApi: TelegramApi, private val handlersFil
 		if (listOf("/cancel", "/отмена").any { text.startsWith(it) }) {
 			handlersFilter.clearState(message.chat)
 
-			val response = TextMessage(
+			val response = TextSendMessage(
 				chatId = message.chat.id,
 				text = "Okay, let's start over."
 			)

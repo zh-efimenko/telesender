@@ -10,7 +10,7 @@ import me.eefimenko.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class AnimationMessage(
+class AnimationSendMessage(
 
 	chatId: Long,
 	animation: Any,
@@ -41,7 +41,7 @@ class AnimationMessage(
 	allowSendingWithoutReply: Boolean? = null,
 	replyMarkup: ReplyMarkup? = null
 
-) : Media(
+) : MediaSendMessage(
 	chatId,
 	animation,
 	thumb,

@@ -10,18 +10,10 @@ import me.eefimenko.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class DocumentMessage(
+class PhotoSendMessage(
 
 	chatId: Long,
-	document: Any,
-
-	/**
-	 * Optional. Disables automatic server-side content type detection for files uploaded using multipart/form-data
-	 */
-	@get:JsonProperty("disable_content_type_detection")
-	val disableContentTypeDetection: Boolean? = null,
-
-	thumb: Any? = null,
+	photo: Any,
 	caption: String? = null,
 	parseMode: ParseMode? = null,
 	captionEntities: List<MessageEntity>? = null,
@@ -30,10 +22,10 @@ class DocumentMessage(
 	allowSendingWithoutReply: Boolean? = null,
 	replyMarkup: ReplyMarkup? = null
 
-) : Media(
+) : MediaSendMessage(
 	chatId,
-	document,
-	thumb,
+	photo,
+	null,
 	caption,
 	parseMode,
 	captionEntities,
@@ -43,7 +35,7 @@ class DocumentMessage(
 	replyMarkup
 ) {
 
-	@JsonProperty("document")
-	fun getDocument(): String = media
+	@JsonProperty("photo")
+	fun getPhoto(): String = media
 
 }

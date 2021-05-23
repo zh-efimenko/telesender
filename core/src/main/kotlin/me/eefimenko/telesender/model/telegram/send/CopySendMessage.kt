@@ -11,7 +11,7 @@ import me.eefimenko.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class CopyMessage(
+class CopySendMessage(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel
@@ -79,4 +79,4 @@ class CopyMessage(
 	@get:JsonProperty("reply_markup")
 	val replyMarkup: ReplyMarkup? = null
 
-)
+) : SendMessage

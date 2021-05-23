@@ -10,7 +10,7 @@ import me.eefimenko.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class AudioMessage(
+class AudioSendMessage(
 
 	chatId: Long,
 	audio: Any,
@@ -42,7 +42,7 @@ class AudioMessage(
 	allowSendingWithoutReply: Boolean? = null,
 	replyMarkup: ReplyMarkup? = null
 
-) : Media(
+) : MediaSendMessage(
 	chatId,
 	audio,
 	thumb,

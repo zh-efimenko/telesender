@@ -3,7 +3,7 @@ package me.eefimenko.telesender.filter
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.model.telegram.recieve.Update
-import me.eefimenko.telesender.model.telegram.send.TextMessage
+import me.eefimenko.telesender.model.telegram.send.TextSendMessage
 import java.util.*
 
 /**
@@ -19,7 +19,7 @@ class UnresolvedMessageFilter(private val telegramApi: TelegramApi) : TelegramFi
 
 		val message = update.message!!
 		if ("PRIVATE".equals(message.chat.type, true)) {
-			val response = TextMessage(
+			val response = TextSendMessage(
 				chatId = message.chat.id,
 				text = "Sorry, I don't understand you, try again."
 			)

@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class ForwardMessage(
+data class ForwardSendMessage(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel
@@ -35,4 +35,4 @@ data class ForwardMessage(
 	@get:JsonProperty("disable_notification")
 	val disableNotification: Boolean? = null
 
-)
+) : SendMessage

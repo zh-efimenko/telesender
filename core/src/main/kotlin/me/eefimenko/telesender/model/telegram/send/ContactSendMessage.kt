@@ -8,7 +8,7 @@ import me.eefimenko.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class VenueMessage(
+data class ContactSendMessage(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel
@@ -18,54 +18,28 @@ data class VenueMessage(
 	val chatId: Long,
 
 	/**
-	 * Latitude of the location
+	 * Contact's phone number
 	 */
-	@get:JsonProperty("latitude")
-	val latitude: Float,
+	@get:JsonProperty("phone_number")
+	val phoneNumber: String,
 
 	/**
-	 * Longitude of the location
+	 * Contact's first name
 	 */
-	@get:JsonProperty("longitude")
-	val longitude: Float,
+	@get:JsonProperty("first_name")
+	val firstName: String,
 
 	/**
-	 * Name of the venue
+	 * Optional. Contact's last name
 	 */
-	@get:JsonProperty("title")
-	val title: String,
+	@get:JsonProperty("last_name")
+	val lastName: String? = null,
 
 	/**
-	 * Address of the venue
+	 * Optional. Additional data about the contact in the form of a vCard, 0-2048 bytes
 	 */
-	@get:JsonProperty("address")
-	val address: String,
-
-	/**
-	 * Optional. Foursquare identifier of the venue
-	 */
-	@get:JsonProperty("foursquare_id")
-	val foursquareId: String? = null,
-
-	/**
-	 * 	Optional. Foursquare type of the venue, if known.
-	 * 	(For example, “arts_entertainment/default”, “arts_entertainment/aquarium” or “food/icecream”.)
-	 */
-	@get:JsonProperty("foursquare_type")
-	val foursquareType: String? = null,
-
-	/**
-	 * Optional. Google Places identifier of the venue
-	 */
-	@get:JsonProperty("google_place_id")
-	val googlePlaceId: String? = null,
-
-	/**
-	 * Optional. Google Places type of the venue. (See supported types -
-	 * @link https://developers.google.com/maps/documentation/places/web-service/supported_types)
-	 */
-	@get:JsonProperty("google_place_type")
-	val googlePlaceType: String? = null,
+	@get:JsonProperty("vcard")
+	val vcard: String? = null,
 
 	/**
 	 * Optional. Sends the message silently. Users will receive a notification with no sound.
@@ -92,4 +66,4 @@ data class VenueMessage(
 	@get:JsonProperty("reply_markup")
 	val replyMarkup: ReplyMarkup? = null
 
-)
+) : SendMessage

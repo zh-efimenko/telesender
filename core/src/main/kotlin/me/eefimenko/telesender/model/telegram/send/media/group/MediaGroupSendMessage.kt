@@ -3,12 +3,13 @@ package me.eefimenko.telesender.model.telegram.send.media.group
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
+import me.eefimenko.telesender.model.telegram.send.SendMessage
 
 /**
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class MediaGroupMessage(
+data class MediaGroupSendMessage(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel
@@ -42,4 +43,4 @@ data class MediaGroupMessage(
 	@get:JsonProperty("allow_sending_without_reply")
 	val allowSendingWithoutReply: Boolean? = null
 
-)
+) : SendMessage
