@@ -27,4 +27,4 @@ data class GetUserProfilePhotosSendMessage(
 	@get:JsonProperty("limit")
 	val limit: Int? = null
 
-) : SendMessage
+)

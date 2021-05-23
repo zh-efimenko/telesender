@@ -12,6 +12,11 @@ import me.eefimenko.telesender.model.telegram.send.media.group.MediaGroupSendMes
 interface TelegramApi {
 
 	/**
+	 * Send any content message
+	 */
+	fun send(message: SendMessage): Any
+
+	/**
 	 * A simple method for testing your bot's auth token. Requires no parameters.
 	 * Returns basic information about the bot in form of a User object.
 	 */
