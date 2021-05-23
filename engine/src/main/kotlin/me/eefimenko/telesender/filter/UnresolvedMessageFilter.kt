@@ -10,7 +10,9 @@ import java.util.*
  * @author Yauheni Yefimenka
  */
 @TelegramFilterOrder(Integer.MAX_VALUE)
-class UnresolvedMessageFilter(private val telegramApi: TelegramApi) : TelegramFilter {
+class UnresolvedMessageFilter(
+	private val telegramApi: TelegramApi
+) : TelegramFilter {
 
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
 		if (Objects.isNull(update.message)) {

@@ -10,7 +10,10 @@ import java.util.*
  * @author Yauheni Yefimenka
  */
 @TelegramFilterOrder(0)
-class CancelFilter(private val telegramApi: TelegramApi, private val handlersFilter: HandlersFilter) : TelegramFilter {
+class CancelFilter(
+	private val telegramApi: TelegramApi,
+	private val handlersFilter: HandlersFilter
+) : TelegramFilter {
 
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
 		if (Objects.isNull(update.message)) {

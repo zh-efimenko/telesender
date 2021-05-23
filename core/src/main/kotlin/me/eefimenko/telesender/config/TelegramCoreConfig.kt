@@ -14,7 +14,7 @@ import org.springframework.context.annotation.Configuration
  * @author Yauheni Yefimenka
  */
 @Configuration
-class TelegramConfig(
+class TelegramCoreConfig(
 	private val unirestInstance: UnirestInstance
 ) {
 
