@@ -5,6 +5,9 @@ import me.eefimenko.telesender.filter.TelegramFilter
 import me.eefimenko.telesender.model.event.TelegramUpdateEvent
 import me.eefimenko.telesender.util.TelegramFilterOrderUtil
 
+/**
+ * @author Yauheni Yefimenka
+ */
 class DefaultTelegramListener(filters: List<TelegramFilter>) : TelegramListener {
 
 	private val filters: List<TelegramFilter> = filters.sortedBy {

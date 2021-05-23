@@ -4,6 +4,9 @@ import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.filter.TelegramFilter
 import org.springframework.core.annotation.AnnotationUtils
 
+/**
+ * @author Yauheni Yefimenka
+ */
 object TelegramFilterOrderUtil {
 
 	fun getOrder(type: Class<out TelegramFilter>): Int {
