@@ -2,6 +2,7 @@ package me.eefimenko.telesender.filter
 
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
+import me.eefimenko.telesender.model.telegram.recieve.Chat
 import me.eefimenko.telesender.model.telegram.recieve.Update
 import me.eefimenko.telesender.model.telegram.send.TextSendMessage
 import java.util.*
@@ -12,7 +13,7 @@ import java.util.*
 @TelegramFilterOrder(0)
 class CancelFilter(
 	private val telegramApi: TelegramApi,
-	private val handlersFilter: HandlersFilter
+	private val filters: List<TelegramFilter>
 ) : TelegramFilter {
 
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
@@ -24,16 +25,17 @@ class CancelFilter(
 		val message = update.message!!
 		val text = message.text?.toLowerCase() ?: ""
 		if (listOf("/cancel", "/отмена").any { text.startsWith(it) }) {
-			handlersFilter.clearState(message.chat)
+			this.clearState(message.chat)
 
-			val response = TextSendMessage(
-				chatId = message.chat.id,
-				text = "Okay, let's start over."
-			)
+			val response = TextSendMessage(chatId = message.chat.id, text = "Okay, let's start over.")
 			telegramApi.sendMessage(response)
 		} else {
 			chain.doFilter(update)
 		}
+	}
+
+	override fun clearState(chat: Chat) {
+		filters.forEach { it.clearState(chat) }
 	}
 
 }

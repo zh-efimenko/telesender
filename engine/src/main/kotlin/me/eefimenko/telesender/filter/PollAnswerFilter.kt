@@ -4,33 +4,27 @@ import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.model.telegram.recieve.Chat
 import me.eefimenko.telesender.model.telegram.recieve.Update
-import me.eefimenko.telesender.model.telegram.send.TextSendMessage
 import java.util.*
 
 /**
  * @author Yauheni Yefimenka
  */
-@TelegramFilterOrder(Integer.MAX_VALUE)
-class UnresolvedMessageFilter(
+@TelegramFilterOrder(400)
+class PollAnswerFilter(
 	private val telegramApi: TelegramApi
 ) : TelegramFilter {
 
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
-		if (Objects.isNull(update.message)) {
+		if (Objects.isNull(update.pollAnswer)) {
+			chain.doFilter(update)
 			return
 		}
 
-		val message = update.message!!
-		if ("PRIVATE".equals(message.chat.type, true)) {
-			val response = TextSendMessage(
-				chatId = message.chat.id,
-				text = "Sorry, I don't understand you, try again."
-			)
-			telegramApi.sendMessage(response)
-		}
+		val pollAnswer = update.pollAnswer!!
 	}
 
 	override fun clearState(chat: Chat) {
+//		TODO("Not yet implemented")
 	}
 
 }

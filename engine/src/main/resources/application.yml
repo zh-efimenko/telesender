@@ -1,5 +1,9 @@
 telegram:
   bot.access-token: 1473066458:AAFeKa9BB76_-VfNKHhRYZm9P-S3iglUAC8
   filters:
+    message.enabled: true
+    callbackQuery.enabled: true
+    poll.enabled: true
+    pollAnswer.enabled: true
     cancel.enabled: true
     unresolved.enabled: true
