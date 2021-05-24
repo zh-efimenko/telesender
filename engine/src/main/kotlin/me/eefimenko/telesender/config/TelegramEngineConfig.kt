@@ -4,7 +4,7 @@ import me.eefimenko.telesender.component.DefaultTelegramListener
 import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.component.TelegramListener
 import me.eefimenko.telesender.filter.*
-import me.eefimenko.telesender.handler.Handler
+import me.eefimenko.telesender.handler.message.MessageHandler
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
@@ -22,8 +22,8 @@ class TelegramEngineConfig {
 
 	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.message.enabled"], matchIfMissing = true)
-	fun messageFilter(telegramApi: TelegramApi, handlers: List<Handler>): MessageFilter =
-		MessageFilter(telegramApi, handlers)
+	fun messageFilter(telegramApi: TelegramApi, messageHandlers: List<MessageHandler>): MessageFilter =
+		MessageFilter(telegramApi, messageHandlers)
 
 	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.callbackQuery.enabled"], matchIfMissing = true)
