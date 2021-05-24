@@ -52,7 +52,7 @@ data class Poll(
 	 * Poll type, currently can be “regular” or “quiz”
 	 */
 	@JsonProperty("type")
-	@get:JsonDeserialize(using = PollType.PollTypDeserializer::class)
+	@JsonDeserialize(using = PollType.PollTypDeserializer::class)
 	val type: PollType,
 
 	/**

@@ -1,5 +1,6 @@
 package me.eefimenko.telesender.model.telegram.common
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import me.eefimenko.telesender.model.telegram.recieve.User
@@ -8,6 +9,7 @@ import me.eefimenko.telesender.model.telegram.recieve.User
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
 data class MessageEntity(
 
 	/**
@@ -17,37 +19,37 @@ data class MessageEntity(
 	 * “underline” (underlined text), “strikethrough” (strikethrough text), “code” (monowidth string),
 	 * “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames).
 	 */
-	@get:JsonProperty("type")
+	@JsonProperty("type")
 	val type: String,
 
 	/**
 	 * Offset in UTF-16 code units to the start of the entity.
 	 */
-	@get:JsonProperty("offset")
+	@JsonProperty("offset")
 	val offset: Int,
 
 	/**
 	 * Length of the entity in UTF-16 code units.
 	 */
-	@get:JsonProperty("length")
+	@JsonProperty("length")
 	val length: Int,
 
 	/**
 	 * Optional. For “text_link” only, url that will be opened after user taps on the text.
 	 */
-	@get:JsonProperty("url")
+	@JsonProperty("url")
 	val url: String? = null,
 
 	/**
 	 * Optional. For “text_mention” only, the mentioned user.
 	 */
-	@get:JsonProperty("user")
+	@JsonProperty("user")
 	val user: User? = null,
 
 	/**
 	 * Optional. For “pre” only, the programming language of the entity text.
 	 */
-	@get:JsonProperty("language")
+	@JsonProperty("language")
 	val language: String? = null
 
 )
