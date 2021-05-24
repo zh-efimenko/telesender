@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component
 @Component
 class TestMessageHandler : MessageHandler {
 
-	override fun getCommands(): List<String> = listOf("/test", "/тест")
+	override fun getCommands(): List<String> = listOf("/test")
 
 	override fun getSteps(): Map<String, MessageHandlerStep<*>> = listOf(
 		object : MessageHandlerStep<String> {

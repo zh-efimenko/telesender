@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank
  */
 @Component
 @ConfigurationProperties("telegram.bot")
-class TelegramProperties(
+class TelegramCoreProperties(
 
 	@field:NotBlank var accessToken: String = ""
 
