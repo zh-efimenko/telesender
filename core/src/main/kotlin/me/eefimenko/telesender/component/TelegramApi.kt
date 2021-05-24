@@ -1,5 +1,6 @@
 package me.eefimenko.telesender.component
 
+import me.eefimenko.telesender.model.telegram.common.BotCommand
 import me.eefimenko.telesender.model.telegram.recieve.*
 import me.eefimenko.telesender.model.telegram.send.*
 import me.eefimenko.telesender.model.telegram.send.inline.AnswerInlineQuery
@@ -131,10 +132,34 @@ interface TelegramApi {
 	fun getUserProfilePhotos(message: GetUserProfilePhotosSendMessage): UserProfilePhotos
 
 	/**
+	 * Use this method to delete a message, including service messages, with the following limitations:
+	 * - A message can only be deleted if it was sent less than 48 hours ago.
+	 * - A dice message in a private chat can only be deleted if it was sent more than 24 hours ago.
+	 * - Bots can delete outgoing messages in private chats, groups, and supergroups.
+	 * - Bots can delete incoming messages in private chats.
+	 * - Bots granted can_post_messages permissions can delete outgoing messages in channels.
+	 * - If the bot is an administrator of a group, it can delete any message there.
+	 * - If the bot has can_delete_messages permission in a supergroup or a channel, it can delete any message there.
+	 * Returns True on success.
+	 */
+	fun deleteMessage(message: DeleteMessage): Boolean
+
+	/**
 	 * Use this method to send answers to callback queries sent from inline keyboards.
 	 * The answer will be displayed to the user as a notification at the top of the chat screen or as an alert.
 	 * On success, True is returned.
 	 */
 	fun answerInlineQuery(query: AnswerInlineQuery): Boolean
+
+	/**
+	 * Use this method to change the list of the bot's commands. Returns True on success.
+	 */
+	fun setMyCommands(message: SetMyCommandsMessage): Boolean
+
+	/**
+	 * Use this method to get the current list of the bot's commands. Requires no parameters.
+	 * Returns Array of BotCommand on success.
+	 */
+	fun getMyCommands(): List<BotCommand>
 
 }

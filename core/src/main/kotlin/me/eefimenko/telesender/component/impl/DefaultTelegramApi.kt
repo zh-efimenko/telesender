@@ -8,6 +8,7 @@ import kong.unirest.HttpResponse
 import kong.unirest.UnirestInstance
 import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.model.exception.TelegramApiException
+import me.eefimenko.telesender.model.telegram.common.BotCommand
 import me.eefimenko.telesender.model.telegram.recieve.*
 import me.eefimenko.telesender.model.telegram.send.*
 import me.eefimenko.telesender.model.telegram.send.inline.AnswerInlineQuery
@@ -279,6 +280,17 @@ class DefaultTelegramApi(
 		return this.handleResponse(response)
 	}
 
+	override fun deleteMessage(message: DeleteMessage): Boolean {
+		val request = unirest
+			.post("/deleteMessage")
+			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
+			.body(message)
+		val response = request
+			.asObject(object : GenericType<Response<Boolean>>() {})
+
+		return this.handleResponse(response)
+	}
+
 	override fun answerInlineQuery(query: AnswerInlineQuery): Boolean {
 		val request = unirest
 			.post("/answerInlineQuery")
@@ -286,6 +298,25 @@ class DefaultTelegramApi(
 			.body(query)
 		val response = request
 			.asObject(object : GenericType<Response<Boolean>>() {})
+
+		return this.handleResponse(response)
+	}
+
+	override fun setMyCommands(message: SetMyCommandsMessage): Boolean {
+		val request = unirest
+			.post("/setMyCommands")
+			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
+			.body(message)
+		val response = request
+			.asObject(object : GenericType<Response<Boolean>>() {})
+
+		return this.handleResponse(response)
+	}
+
+	override fun getMyCommands(): List<BotCommand> {
+		val response = unirest
+			.get("/getMyCommands")
+			.asObject(object : GenericType<Response<List<BotCommand>>>() {})
 
 		return this.handleResponse(response)
 	}
