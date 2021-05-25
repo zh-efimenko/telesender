@@ -2,14 +2,13 @@ package me.eefimenko.telesender.filter
 
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
-import me.eefimenko.telesender.config.property.TelegramEngineProperties
+import me.eefimenko.telesender.filter.util.FilterExceptionUtil
 import me.eefimenko.telesender.handler.MessageHandler
 import me.eefimenko.telesender.handler.message.MessageHandlerState
 import me.eefimenko.telesender.model.telegram.recieve.Message
 import me.eefimenko.telesender.model.telegram.recieve.Update
 import me.eefimenko.telesender.model.telegram.send.SendMessage
 import me.eefimenko.telesender.model.telegram.send.TextSendMessage
-import mu.KotlinLogging
 import java.util.concurrent.ConcurrentHashMap
 
 /**
@@ -19,10 +18,8 @@ import java.util.concurrent.ConcurrentHashMap
 class MessageFilter(
 	private val telegramApi: TelegramApi,
 	private val handlers: List<MessageHandler>,
-	private val properties: TelegramEngineProperties
+	private val exceptionUtil: FilterExceptionUtil
 ) : TelegramFilter {
-
-	private val log = KotlinLogging.logger {}
 
 	private val states: MutableMap<Long, MessageHandlerState> = ConcurrentHashMap()
 
@@ -51,22 +48,10 @@ class MessageFilter(
 			} else {
 				continueHandleStep(state, message)
 			}
-		} catch (e: Exception) {
-			val errorMessage = """
-					filter: message,
-					chat_id: ${message.chat.id}, 
-					user_id: ${message.from?.id},
-					message: ${e.message ?: "Error during handler processing"}
-				""".trimIndent()
-
-			log.error(errorMessage, e)
-
+		} catch (ex: Exception) {
 			states.remove(message.chat.id)
 
-			if (properties.admin.enabled) {
-				val response = TextSendMessage(chatId = properties.admin.chatId, text = errorMessage)
-				telegramApi.send(response)
-			}
+			exceptionUtil.handleException(message, ex)
 		}
 	}
 
@@ -119,10 +104,8 @@ class MessageFilter(
 			state.currentStep = nextStep
 
 			handleStep(state)
-		} catch (e: Exception) {
-			log.error(e.message, e)
-
-			val response = TextSendMessage(chatId = state.chat.id, text = e.message ?: "Validation error (:")
+		} catch (ex: Exception) {
+			val response = TextSendMessage(chatId = state.chat.id, text = ex.message ?: "Validation error (:")
 			telegramApi.send(response)
 		}
 	}

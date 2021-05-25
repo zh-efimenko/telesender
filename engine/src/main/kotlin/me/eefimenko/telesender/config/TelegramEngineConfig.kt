@@ -5,6 +5,7 @@ import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.component.TelegramListener
 import me.eefimenko.telesender.config.property.TelegramEngineProperties
 import me.eefimenko.telesender.filter.*
+import me.eefimenko.telesender.filter.util.FilterExceptionUtil
 import me.eefimenko.telesender.handler.CallbackQueryHandler
 import me.eefimenko.telesender.handler.MessageHandler
 import me.eefimenko.telesender.handler.PollAnswerHandler
@@ -28,37 +29,26 @@ class TelegramEngineConfig {
 	@ConditionalOnProperty(name = ["telegram.filters.message.enabled"], matchIfMissing = true)
 	fun messageFilter(
 		telegramApi: TelegramApi,
-		messageHandlers: List<MessageHandler>,
-		properties: TelegramEngineProperties
-	): MessageFilter =
-		MessageFilter(telegramApi, messageHandlers, properties)
+		handlers: List<MessageHandler>,
+		exceptionUtil: FilterExceptionUtil
+	): MessageFilter = MessageFilter(telegramApi, handlers, exceptionUtil)
 
 	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.callbackQuery.enabled"], matchIfMissing = true)
 	fun callbackQueryFilter(
-		telegramApi: TelegramApi,
 		handlers: List<CallbackQueryHandler>,
-		properties: TelegramEngineProperties
-	): CallbackQueryFilter =
-		CallbackQueryFilter(telegramApi, handlers, properties)
+		exceptionUtil: FilterExceptionUtil
+	): CallbackQueryFilter = CallbackQueryFilter(handlers, exceptionUtil)
 
 	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.poll.enabled"], matchIfMissing = true)
-	fun pollFilter(
-		telegramApi: TelegramApi,
-		handlers: List<PollHandler>,
-		properties: TelegramEngineProperties
-	): PollFilter =
-		PollFilter(telegramApi, handlers, properties)
+	fun pollFilter(handlers: List<PollHandler>, exceptionUtil: FilterExceptionUtil): PollFilter =
+		PollFilter(handlers, exceptionUtil)
 
 	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.pollAnswer.enabled"], matchIfMissing = true)
-	fun pollAnswerFilter(
-		telegramApi: TelegramApi,
-		handlers: List<PollAnswerHandler>,
-		properties: TelegramEngineProperties
-	): PollAnswerFilter =
-		PollAnswerFilter(telegramApi, handlers, properties)
+	fun pollAnswerFilter(handlers: List<PollAnswerHandler>, exceptionUtil: FilterExceptionUtil): PollAnswerFilter =
+		PollAnswerFilter(handlers, exceptionUtil)
 
 	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.cancel.enabled"], matchIfMissing = true)

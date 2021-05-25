@@ -19,10 +19,10 @@ class BotCommandRunner(
 
 	override fun run(vararg args: String?) {
 		val commands = mutableMapOf<String, String>()
-		commands.putAll(properties.getFullCommands())
 		handlers.map { it.getCommands() }.forEach {
 			commands.putAll(it)
 		}
+		commands.putAll(properties.getFullCommands())
 
 		val botCommands = commands.map {
 			val command = it.key.replace("/", "")
