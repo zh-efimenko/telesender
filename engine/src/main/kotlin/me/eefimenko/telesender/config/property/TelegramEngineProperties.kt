@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component
 @ConfigurationProperties("telegram")
 class TelegramEngineProperties {
 
+	var admin: Admin = Admin()
+
 	var filters: Map<String, Map<String, Any>> = mapOf()
 
 	fun enabledFilter(name: String): Boolean = filters[name]?.get("enabled") as? Boolean ?: true
@@ -43,4 +45,10 @@ class TelegramEngineProperties {
 		const val CANCEL_FILTER = "cancel"
 		const val UNRESOLVED_FILTER = "unresolved"
 	}
+
+	class Admin(
+		var enabled: Boolean = false,
+		var chatId: Long = 0
+	)
+
 }

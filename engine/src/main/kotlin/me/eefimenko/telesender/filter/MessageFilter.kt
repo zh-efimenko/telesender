@@ -2,6 +2,7 @@ package me.eefimenko.telesender.filter
 
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
+import me.eefimenko.telesender.config.property.TelegramEngineProperties
 import me.eefimenko.telesender.handler.MessageHandler
 import me.eefimenko.telesender.handler.message.MessageHandlerState
 import me.eefimenko.telesender.model.telegram.recieve.Message
@@ -17,7 +18,8 @@ import java.util.concurrent.ConcurrentHashMap
 @TelegramFilterOrder(100)
 class MessageFilter(
 	private val telegramApi: TelegramApi,
-	private val messageHandlers: List<MessageHandler>
+	private val handlers: List<MessageHandler>,
+	private val properties: TelegramEngineProperties
 ) : TelegramFilter {
 
 	private val log = KotlinLogging.logger {}
@@ -50,11 +52,21 @@ class MessageFilter(
 				continueHandleStep(state, message)
 			}
 		} catch (e: Exception) {
-			log.error("Error during handler processing", e)
+			val errorMessage = """
+					filter: message,
+					chat_id: ${message.chat.id}, 
+					user_id: ${message.from?.id},
+					message: ${e.message ?: "Error during handler processing"}
+				""".trimIndent()
+
+			log.error(errorMessage, e)
 
 			states.remove(message.chat.id)
-			val response = TextSendMessage(chatId = message.chat.id, text = "Something went wrong :(")
-			telegramApi.send(response)
+
+			if (properties.admin.enabled) {
+				val response = TextSendMessage(chatId = properties.admin.chatId, text = errorMessage)
+				telegramApi.send(response)
+			}
 		}
 	}
 
@@ -74,7 +86,7 @@ class MessageFilter(
 		}
 
 		val text = message.text?.toLowerCase() ?: return null
-		for (handler in messageHandlers) {
+		for (handler in handlers) {
 			if (handler.getCommands().keys.any { text.startsWith(it) }) {
 				return handler
 			}

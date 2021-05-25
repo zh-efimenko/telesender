@@ -1,5 +1,8 @@
 telegram:
     bot.access-token: 1473066458:AAFeKa9BB76_-VfNKHhRYZm9P-S3iglUAC8
+    admin:
+        enabled: true
+        chat-id: 187287135
     filters:
         cancel:
             enabled: true
