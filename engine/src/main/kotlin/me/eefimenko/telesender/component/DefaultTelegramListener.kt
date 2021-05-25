@@ -16,7 +16,7 @@ class DefaultTelegramListener(filters: List<TelegramFilter>) : TelegramListener 
 
 	override fun onMessage(event: TelegramUpdateEvent) {
 		val chain = DefaultTelegramFilterChain(filters)
-		chain.doFilter(event.update)
+		chain.doHandle(event.update)
 	}
 
 }

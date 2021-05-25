@@ -1,5 +1,6 @@
 package me.eefimenko.telesender.handler.message
 
+import me.eefimenko.telesender.handler.MessageHandler
 import me.eefimenko.telesender.model.telegram.recieve.Chat
 import java.util.concurrent.ConcurrentHashMap
 

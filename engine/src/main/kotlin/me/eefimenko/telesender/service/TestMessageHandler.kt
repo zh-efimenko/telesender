@@ -1,6 +1,10 @@
 package me.eefimenko.telesender.service
 
-import me.eefimenko.telesender.handler.message.*
+import me.eefimenko.telesender.handler.ProcessBlock
+import me.eefimenko.telesender.handler.MessageQuestionBlock
+import me.eefimenko.telesender.handler.MessageValidationBlock
+import me.eefimenko.telesender.handler.MessageHandler
+import me.eefimenko.telesender.handler.message.MessageHandlerStep
 import me.eefimenko.telesender.model.telegram.send.TextSendMessage
 import me.eefimenko.telesender.model.telegram.send.keyboard.InlineKeyboardButton
 import me.eefimenko.telesender.model.telegram.send.keyboard.InlineKeyboardMarkup
@@ -18,7 +22,7 @@ class TestMessageHandler : MessageHandler {
 		object : MessageHandlerStep<String> {
 			override fun getKey(): String = "one"
 
-			override fun getQuestion(): QuestionBlock = {
+			override fun getQuestion(): MessageQuestionBlock = {
 				TextSendMessage(
 					it.chat.id,
 					text = "Ты уверен?",
@@ -31,7 +35,7 @@ class TestMessageHandler : MessageHandler {
 				)
 			}
 
-			override fun getValidation(): ValidationBlock<String> = {
+			override fun getValidation(): MessageValidationBlock<String> = {
 				when (it.text) {
 					"y" -> "Cool"
 					"n" -> "Bad"
@@ -45,11 +49,11 @@ class TestMessageHandler : MessageHandler {
 		object : MessageHandlerStep<String> {
 			override fun getKey(): String = "two"
 
-			override fun getQuestion(): QuestionBlock = {
+			override fun getQuestion(): MessageQuestionBlock = {
 				TextSendMessage(it.chat.id, text = "Точно?")
 			}
 
-			override fun getValidation(): ValidationBlock<String> = {
+			override fun getValidation(): MessageValidationBlock<String> = {
 				when (it.text) {
 					"y" -> "EXCELLENT"
 					"n" -> "Very BAD"
@@ -64,8 +68,8 @@ class TestMessageHandler : MessageHandler {
 
 	override fun getInitialStepKey(): String = "one"
 
-	override fun getProcess(): ProcessBlock = { state, answers ->
-		TextSendMessage(state.chat.id, text = answers.values.toString())
+	override fun getProcess(): ProcessBlock = { chat, answers ->
+		TextSendMessage(chat.id, text = answers.values.toString())
 	}
 
 }

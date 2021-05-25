@@ -2,9 +2,8 @@ package me.eefimenko.telesender.filter
 
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
-import me.eefimenko.telesender.handler.message.MessageHandler
+import me.eefimenko.telesender.handler.MessageHandler
 import me.eefimenko.telesender.handler.message.MessageHandlerState
-import me.eefimenko.telesender.model.telegram.recieve.Chat
 import me.eefimenko.telesender.model.telegram.recieve.Message
 import me.eefimenko.telesender.model.telegram.recieve.Update
 import me.eefimenko.telesender.model.telegram.send.SendMessage
@@ -27,7 +26,7 @@ class MessageFilter(
 
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
 		if (update.message == null) {
-			chain.doFilter(update)
+			chain.doHandle(update)
 			return
 		}
 
@@ -35,7 +34,7 @@ class MessageFilter(
 
 		val handler = this.findHandler(message)
 		if (handler == null) {
-			chain.doFilter(update)
+			chain.doHandle(update)
 			return
 		}
 
@@ -53,14 +52,19 @@ class MessageFilter(
 		} catch (e: Exception) {
 			log.error("Error during handler processing", e)
 
-			clearState(message.chat)
+			states.remove(message.chat.id)
 			val response = TextSendMessage(chatId = message.chat.id, text = "Something went wrong :(")
 			telegramApi.send(response)
 		}
 	}
 
-	override fun clearState(chat: Chat) {
-		states.remove(chat.id)
+	override fun clearState(update: Update, chain: TelegramFilterChain) {
+		if (update.message == null) {
+			chain.doClear(update)
+			return
+		}
+
+		states.remove(update.message!!.chat.id)
 	}
 
 	private fun findHandler(message: Message): MessageHandler? {
@@ -79,8 +83,8 @@ class MessageFilter(
 	}
 
 	private fun handleProcessBlock(state: MessageHandlerState): SendMessage? {
-		clearState(state.chat)
-		return state.messageHandler.getProcess()(state, state.answers)
+		states.remove(state.chat.id)
+		return state.messageHandler.getProcess()(state.chat, state.answers)
 	}
 
 	private fun handleStep(state: MessageHandlerState) {

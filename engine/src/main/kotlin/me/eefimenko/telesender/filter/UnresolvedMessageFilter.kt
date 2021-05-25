@@ -2,7 +2,6 @@ package me.eefimenko.telesender.filter
 
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
-import me.eefimenko.telesender.model.telegram.recieve.Chat
 import me.eefimenko.telesender.model.telegram.recieve.Update
 import me.eefimenko.telesender.model.telegram.send.TextSendMessage
 import java.util.*
@@ -28,9 +27,6 @@ class UnresolvedMessageFilter(
 			)
 			telegramApi.sendMessage(response)
 		}
-	}
-
-	override fun clearState(chat: Chat) {
 	}
 
 }

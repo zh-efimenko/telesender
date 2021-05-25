@@ -2,7 +2,6 @@ package me.eefimenko.telesender.filter
 
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
-import me.eefimenko.telesender.model.telegram.recieve.Chat
 import me.eefimenko.telesender.model.telegram.recieve.Update
 import java.util.*
 
@@ -16,15 +15,11 @@ class PollAnswerFilter(
 
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
 		if (Objects.isNull(update.pollAnswer)) {
-			chain.doFilter(update)
+			chain.doHandle(update)
 			return
 		}
 
 		val pollAnswer = update.pollAnswer!!
-	}
-
-	override fun clearState(chat: Chat) {
-//		TODO("Not yet implemented")
 	}
 
 }

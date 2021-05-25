@@ -1,5 +1,8 @@
 package me.eefimenko.telesender.handler.message
 
+import me.eefimenko.telesender.handler.MessageQuestionBlock
+import me.eefimenko.telesender.handler.MessageValidationBlock
+
 /**
  * @author Yauheni Yefimenka
  */
@@ -7,9 +10,9 @@ interface MessageHandlerStep<T : Any> {
 
 	fun getKey(): String
 
-	fun getQuestion(): QuestionBlock
+	fun getQuestion(): MessageQuestionBlock
 
-	fun getValidation(): ValidationBlock<T>
+	fun getValidation(): MessageValidationBlock<T>
 
 	fun getNextStepKey(): String?
 

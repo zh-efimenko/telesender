@@ -5,7 +5,7 @@ import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.component.TelegramListener
 import me.eefimenko.telesender.config.property.TelegramEngineProperties
 import me.eefimenko.telesender.filter.*
-import me.eefimenko.telesender.handler.message.MessageHandler
+import me.eefimenko.telesender.handler.MessageHandler
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty
 import org.springframework.context.annotation.Bean
@@ -43,11 +43,8 @@ class TelegramEngineConfig {
 
 	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.cancel.enabled"], matchIfMissing = true)
-	fun cancelFilter(
-		telegramApi: TelegramApi,
-		filters: List<TelegramFilter>,
-		properties: TelegramEngineProperties
-	): CancelFilter = CancelFilter(telegramApi, filters, properties)
+	fun cancelFilter(telegramApi: TelegramApi, properties: TelegramEngineProperties): CancelFilter =
+		CancelFilter(telegramApi, properties)
 
 	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.unresolved.enabled"], matchIfMissing = true)
