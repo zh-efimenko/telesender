@@ -18,13 +18,15 @@ class BotCommandRunner(
 ) : CommandLineRunner {
 
 	override fun run(vararg args: String?) {
-		val commands = mutableListOf<String>()
-		commands.addAll(properties.getFullCommands())
-		commands.addAll(handlers.flatMap { it.getCommands() })
+		val commands = mutableMapOf<String, String>()
+		commands.putAll(properties.getFullCommands())
+		handlers.map { it.getCommands() }.forEach {
+			commands.putAll(it)
+		}
 
 		val botCommands = commands.map {
-			val command = it.replace("/", "")
-			BotCommand(command = command, description = command)
+			val command = it.key.replace("/", "")
+			BotCommand(command = command, description = it.value)
 		}
 		telegramApi.setMyCommands(SetMyCommandsMessage(commands = botCommands))
 	}

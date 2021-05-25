@@ -4,4 +4,4 @@ telegram:
         cancel:
             enabled: true
             commands:
-                - /cancel
+                - '/cancel:cancel'

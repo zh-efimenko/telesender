@@ -75,7 +75,7 @@ class MessageFilter(
 
 		val text = message.text?.toLowerCase() ?: return null
 		for (handler in messageHandlers) {
-			if (handler.getCommands().any { text.startsWith(it) }) {
+			if (handler.getCommands().keys.any { text.startsWith(it) }) {
 				return handler
 			}
 		}

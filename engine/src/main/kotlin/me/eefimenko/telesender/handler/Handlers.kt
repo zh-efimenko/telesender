@@ -7,9 +7,7 @@ import me.eefimenko.telesender.handler.message.MessageHandlerStep
  */
 interface Handler {
 
-	fun getCommands(): List<String>
-
-	fun getProcess(): ProcessBlock
+	fun getCommands(): Map<String, String>
 
 }
 
@@ -19,10 +17,28 @@ interface MessageHandler : Handler {
 
 	fun getInitialStepKey(): String?
 
+	fun getProcess(): MessageProcessBlock
+
 	fun getStepByKey(key: String): MessageHandlerStep<*>? = getSteps()[key]
 
 	fun getInitialStep(): MessageHandlerStep<*>? = getInitialStepKey()?.let { getStepByKey(it) }
 
 }
 
-interface CallbackQueryHandler : Handler
+interface CallbackQueryHandler : Handler {
+
+	fun getProcess(): CallbackQueryProcessBlock
+
+}
+
+interface PollHandler : Handler {
+
+	fun getProcess(): PollProcessBlock
+
+}
+
+interface PollAnswerHandler : Handler {
+
+	fun getProcess(): PollAnswerProcessBlock
+
+}

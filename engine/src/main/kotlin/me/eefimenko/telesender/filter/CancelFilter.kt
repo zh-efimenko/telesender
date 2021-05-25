@@ -25,7 +25,7 @@ class CancelFilter(
 
 		val message = update.message!!
 		val text = message.text?.toLowerCase() ?: ""
-		if (properties.getFilterCommands(CANCEL_FILTER).any { text.startsWith(it) }) {
+		if (properties.getFilterCommands(CANCEL_FILTER).keys.any { text.startsWith(it) }) {
 			chain.doClear(update)
 
 			val response = TextSendMessage(chatId = message.chat.id, text = "Okay, let's start over.")

@@ -1,9 +1,9 @@
 package me.eefimenko.telesender.service
 
-import me.eefimenko.telesender.handler.ProcessBlock
+import me.eefimenko.telesender.handler.MessageHandler
+import me.eefimenko.telesender.handler.MessageProcessBlock
 import me.eefimenko.telesender.handler.MessageQuestionBlock
 import me.eefimenko.telesender.handler.MessageValidationBlock
-import me.eefimenko.telesender.handler.MessageHandler
 import me.eefimenko.telesender.handler.message.MessageHandlerStep
 import me.eefimenko.telesender.model.telegram.send.TextSendMessage
 import me.eefimenko.telesender.model.telegram.send.keyboard.InlineKeyboardButton
@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component
 @Component
 class TestMessageHandler : MessageHandler {
 
-	override fun getCommands(): List<String> = listOf("/test")
+	override fun getCommands(): Map<String, String> = mapOf("/test" to "my test")
 
 	override fun getSteps(): Map<String, MessageHandlerStep<*>> = listOf(
 		object : MessageHandlerStep<String> {
@@ -68,7 +68,7 @@ class TestMessageHandler : MessageHandler {
 
 	override fun getInitialStepKey(): String = "one"
 
-	override fun getProcess(): ProcessBlock = { chat, answers ->
+	override fun getProcess(): MessageProcessBlock = { chat, answers ->
 		TextSendMessage(chat.id, text = answers.values.toString())
 	}
 

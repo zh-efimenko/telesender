@@ -15,16 +15,25 @@ class TelegramEngineProperties {
 	fun enabledFilter(name: String): Boolean = filters[name]?.get("enabled") as? Boolean ?: true
 
 	@Suppress("UNCHECKED_CAST")
-	fun getFilterCommands(name: String): List<String> {
+	fun getFilterCommands(name: String): Map<String, String> {
 		if (!enabledFilter(name)) {
-			return emptyList()
+			return emptyMap()
 		}
 
 		val commands = filters[name]?.get("commands") as? Map<Int, String>
-		return commands?.values?.toList() ?: emptyList()
+		return commands?.values?.associate {
+			Pair(it.substringBefore(':'), it.substringAfter(':'))
+		} ?: emptyMap()
 	}
 
-	fun getFullCommands(): List<String> = filters.keys.flatMap { getFilterCommands(it) }
+	fun getFullCommands(): Map<String, String> {
+		val commands = mutableMapOf<String, String>()
+		filters.keys.forEach {
+			commands.putAll(this.getFilterCommands(it))
+		}
+
+		return commands
+	}
 
 	companion object {
 		const val MESSAGE_FILTER = "message"
