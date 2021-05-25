@@ -1,14 +1,14 @@
 package me.eefimenko.telesender.handler.message
 
 import me.eefimenko.telesender.handler.MessageHandler
-import me.eefimenko.telesender.model.telegram.recieve.Chat
+import me.eefimenko.telesender.model.telegram.recieve.Message
 import java.util.concurrent.ConcurrentHashMap
 
 /**
  * @author Yauheni Yefimenka
  */
 class MessageHandlerState(
-	val chat: Chat,
+	val message: Message,
 	val messageHandler: MessageHandler
 ) {
 

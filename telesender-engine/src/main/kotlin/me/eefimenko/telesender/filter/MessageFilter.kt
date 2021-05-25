@@ -41,7 +41,7 @@ class MessageFilter(
 
 		try {
 			if (state == null) {
-				val newState = MessageHandlerState(message.chat, handler)
+				val newState = MessageHandlerState(message, handler)
 				states[message.chat.id] = newState
 
 				handleStep(newState)
@@ -80,8 +80,8 @@ class MessageFilter(
 	}
 
 	private fun handleProcessBlock(state: MessageHandlerState): SendMessage? {
-		states.remove(state.chat.id)
-		return state.messageHandler.getProcess()(state.chat, state.answers)
+		states.remove(state.message.chat.id)
+		return state.messageHandler.getProcess()(state.message, state.answers)
 	}
 
 	private fun handleStep(state: MessageHandlerState) {
@@ -105,7 +105,7 @@ class MessageFilter(
 
 			handleStep(state)
 		} catch (ex: Exception) {
-			val response = TextSendMessage(chatId = state.chat.id, text = ex.message ?: "Validation error (:")
+			val response = TextSendMessage(chatId = state.message.chat.id, text = ex.message ?: "Validation error (:")
 			telegramApi.send(response)
 		}
 	}

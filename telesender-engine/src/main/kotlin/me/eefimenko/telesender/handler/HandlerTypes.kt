@@ -1,7 +1,6 @@
 package me.eefimenko.telesender.handler
 
 import me.eefimenko.telesender.handler.message.MessageHandlerState
-import me.eefimenko.telesender.model.telegram.recieve.Chat
 import me.eefimenko.telesender.model.telegram.recieve.Message
 import me.eefimenko.telesender.model.telegram.recieve.Poll
 import me.eefimenko.telesender.model.telegram.recieve.PollAnswer
@@ -14,7 +13,7 @@ import me.eefimenko.telesender.model.telegram.send.TextSendMessage
  */
 
 // message handler
-typealias MessageProcessBlock = (chat: Chat, answers: Map<String, Any>) -> SendMessage?
+typealias MessageProcessBlock = (message: Message, answers: Map<String, Any>) -> SendMessage?
 typealias MessageQuestionBlock = (MessageHandlerState) -> TextSendMessage
 typealias MessageValidationBlock<T> = (Message) -> T
 
