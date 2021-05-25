@@ -1,7 +1,7 @@
 version = "0.0.1-SNAPSHOT"
 
 dependencies {
-	implementation(project(":core"))
+	implementation(project(":telesender-core"))
 
 	// DevUtil
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
