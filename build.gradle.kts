@@ -18,6 +18,7 @@ subprojects {
 	apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 
 	group = "me.eefimenko.telesender"
+	version = "1.0.0"
 	java.sourceCompatibility = JavaVersion.VERSION_11
 
 	repositories {
