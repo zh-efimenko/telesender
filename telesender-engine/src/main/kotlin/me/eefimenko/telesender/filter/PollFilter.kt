@@ -1,6 +1,7 @@
 package me.eefimenko.telesender.filter
 
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
+import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.filter.util.FilterExceptionUtil
 import me.eefimenko.telesender.handler.PollHandler
 import me.eefimenko.telesender.model.telegram.recieve.Update
@@ -11,6 +12,7 @@ import java.util.*
  */
 @TelegramFilterOrder(300)
 class PollFilter(
+	private val telegramApi: TelegramApi,
 	private val handlers: List<PollHandler>,
 	private val exceptionUtil: FilterExceptionUtil
 ) : TelegramFilter {
@@ -27,7 +29,8 @@ class PollFilter(
 
 		for (handler in handlers) {
 			try {
-				handler.getProcess()(poll)
+				val response = handler.getProcess()(poll)
+				telegramApi.send(response)
 			} catch (ex: Exception) {
 				exceptionUtil.handleException(poll, ex)
 			}
