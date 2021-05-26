@@ -3,7 +3,6 @@ package me.eefimenko.telesender.filter
 import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.config.property.TelegramEngineProperties
-import me.eefimenko.telesender.config.property.TelegramEngineProperties.Companion.CANCEL_FILTER
 import me.eefimenko.telesender.model.telegram.recieve.Update
 import me.eefimenko.telesender.model.telegram.send.TextSendMessage
 import java.util.*
@@ -17,6 +16,8 @@ class CancelFilter(
 	private val properties: TelegramEngineProperties,
 ) : TelegramFilter {
 
+	override fun getCommands(): Map<String, String> = properties.cancelFilter.getCommands()
+
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
 		if (Objects.isNull(update.message)) {
 			chain.doHandle(update)
@@ -25,7 +26,7 @@ class CancelFilter(
 
 		val message = update.message!!
 		val text = message.text?.toLowerCase() ?: ""
-		if (properties.getFilterCommands(CANCEL_FILTER).keys.any { text.startsWith(it) }) {
+		if (this.getCommands().keys.any { text.startsWith(it) }) {
 			chain.doClear(update)
 
 			val response = TextSendMessage(chatId = message.chat.id, text = "Okay, let's start over.")

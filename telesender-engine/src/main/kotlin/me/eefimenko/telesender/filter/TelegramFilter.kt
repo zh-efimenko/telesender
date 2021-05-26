@@ -7,6 +7,8 @@ import me.eefimenko.telesender.model.telegram.recieve.Update
  */
 interface TelegramFilter {
 
+	fun getCommands(): Map<String, String>
+
 	fun handleMessage(update: Update, chain: TelegramFilterChain) {
 		chain.doHandle(update)
 	}

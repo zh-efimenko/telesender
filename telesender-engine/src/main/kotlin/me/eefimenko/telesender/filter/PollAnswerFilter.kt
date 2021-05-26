@@ -15,6 +15,8 @@ class PollAnswerFilter(
 	private val exceptionUtil: FilterExceptionUtil
 ) : TelegramFilter {
 
+	override fun getCommands(): Map<String, String> = mapOf()
+
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
 		if (Objects.isNull(update.pollAnswer)) {
 			chain.doHandle(update)

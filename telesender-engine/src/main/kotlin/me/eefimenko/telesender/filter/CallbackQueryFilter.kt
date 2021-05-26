@@ -15,6 +15,8 @@ class CallbackQueryFilter(
 	private val exceptionUtil: FilterExceptionUtil
 ) : TelegramFilter {
 
+	override fun getCommands(): Map<String, String> = mapOf()
+
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
 		if (Objects.isNull(update.callbackQuery)) {
 			chain.doHandle(update)

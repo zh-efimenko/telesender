@@ -23,6 +23,15 @@ class MessageFilter(
 
 	private val states: MutableMap<Long, MessageHandlerState> = ConcurrentHashMap()
 
+	override fun getCommands(): Map<String, String> {
+		val commands = mutableMapOf<String, String>()
+		handlers.forEach {
+			commands.putAll(it.getCommands())
+		}
+
+		return commands
+	}
+
 	override fun handleMessage(update: Update, chain: TelegramFilterChain) {
 		if (update.message == null) {
 			chain.doHandle(update)
