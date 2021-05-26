@@ -7,6 +7,12 @@ import me.eefimenko.telesender.handler.message.MessageHandlerStep
  */
 interface Handler {
 
+	/**
+	 * The key is text of the command, 1-32 characters.
+	 * Can contain only lowercase English letters, digits and underscores. And command must start with /.
+	 *
+	 * The value is description
+	 */
 	fun getCommands(): Map<String, String>
 
 }
