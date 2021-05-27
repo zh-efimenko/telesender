@@ -10,44 +10,44 @@ The main aim this library it's simplify the creation process any telegram's bots
 The library helps you work flexible and put your business logic to both special objects: __filters__ 
 and __handlers__.
 
-### Filters
+## Filters
 
 The library contains some special filters for base aims of telegram's bots, but you can always 
 create your own filters, you just implement `TelegramFilter` interface.
 
-#### Message filter
+### Message filter
 
 Message filter serves in order to process `MessageHandler` classes which contains business 
 logic to handle __*Messages*__ from telegram's chats.
 
-#### CallbackQuery filter
+### CallbackQuery filter
 
 CallbackQuery filter serves in order to process `CallbackQueryHandler` classes which contains 
 business logic to handle __*CallbackQueries*__ from telegram's chats.
 
-#### Poll filter
+### Poll filter
 
 Poll filter serves in order to process `PollHandler` classes which contains business logic to handle 
 __*Polls*__ from telegram's chats.
 
-#### PollAnswer filter
+### PollAnswer filter
 
 PollAnswer filter serves in order to process `PollAnswerHandler` classes which contains business 
 logic to handle __*PollAnswers*__ from telegram's chats.
 
-#### Cancel filter
+### Cancel filter
 
 Cancel filter serves in order to reset any state your application and start again. For these goals 
 every filter has special method __*clear*__ which helps you take care of resetting any states.
 
-#### Unresolved filter
+### Unresolved filter
 
 Unresolved filter serves in order to notice that your application does not understand chat's command.
 
 
-### Handlers
+## Handlers
 
-#### Message handlers
+### Message handlers
 
 In order to create one of them you need to implement `MessageHandler` interface and to put 
 your business logic.
@@ -91,7 +91,7 @@ class GeneratorKeyHandler : MessageHandler {
 }
 ```
 
-#### CallbackQuery handlers
+### CallbackQuery handlers
 
 In order to create one of them you need to implement `CallbackQueryHandler` interface and to put
 your business logic.
@@ -110,7 +110,7 @@ class CallbackTestHandler : CallbackQueryHandler {
 }
 ```
 
-#### Poll handlers
+### Poll handlers
 
 In order to create one of them you need to implement `PollHandler` interface and to put
 your business logic.
@@ -126,7 +126,7 @@ class PollHandlerTest : PollHandler {
 }
 ```
 
-#### PollAnswer handlers
+### PollAnswer handlers
 
 In order to create one of them you need to implement `PollAnswerHandler` interface and to put
 your business logic.
