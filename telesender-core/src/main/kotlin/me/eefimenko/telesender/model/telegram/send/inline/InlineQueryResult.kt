@@ -57,7 +57,7 @@ abstract class InlineQueryResult(
 
 		class TypeSerializer : StdSerializer<Type>(Type::class.java) {
 			override fun serialize(value: Type, generator: JsonGenerator, provider: SerializerProvider) {
-				generator.writeString(value.name.toLowerCase())
+				generator.writeString(value.name.lowercase())
 			}
 		}
 	}

@@ -25,7 +25,7 @@ class CancelFilter(
 		}
 
 		val message = update.message!!
-		val text = message.text?.toLowerCase() ?: ""
+		val text = message.text?.lowercase() ?: ""
 		if (this.getCommands().keys.any { text.startsWith(it) }) {
 			chain.doClear(update)
 

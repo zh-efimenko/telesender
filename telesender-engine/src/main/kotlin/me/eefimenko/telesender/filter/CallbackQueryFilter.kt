@@ -43,7 +43,7 @@ class CallbackQueryFilter(
 	}
 
 	private fun findHandler(callbackQuery: CallbackQuery): CallbackQueryHandler? {
-		val text = callbackQuery.data?.toLowerCase() ?: return null
+		val text = callbackQuery.data?.lowercase() ?: return null
 		for (handler in handlers) {
 			if (handler.getCommands().keys.any { text.startsWith(it) }) {
 				return handler

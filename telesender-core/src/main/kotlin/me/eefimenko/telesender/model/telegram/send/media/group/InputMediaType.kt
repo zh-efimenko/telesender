@@ -17,7 +17,7 @@ enum class InputMediaType {
 
 	class InputMediaTypeSerializer : StdSerializer<InputMediaType>(InputMediaType::class.java) {
 		override fun serialize(mode: InputMediaType, generator: JsonGenerator, provider: SerializerProvider) {
-			generator.writeString(mode.name.toLowerCase())
+			generator.writeString(mode.name.lowercase())
 		}
 	}
 }
