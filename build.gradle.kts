@@ -2,15 +2,17 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 
 plugins {
 	java
+	`maven-publish`
 	id("org.springframework.boot") version "2.4.1" apply false
 	id("io.spring.dependency-management") version "1.0.10.RELEASE" apply false
-	kotlin("jvm") version "1.4.21" apply false
-	kotlin("kapt") version "1.4.21" apply false
-	kotlin("plugin.spring") version "1.4.21" apply false
+	kotlin("jvm") version "1.5.10" apply false
+	kotlin("kapt") version "1.5.10" apply false
+	kotlin("plugin.spring") version "1.5.10" apply false
 }
 
 subprojects {
 	apply(plugin = "java")
+	apply(plugin = "maven-publish")
 	apply(plugin = "org.springframework.boot")
 	apply(plugin = "io.spring.dependency-management")
 	apply(plugin = "org.jetbrains.kotlin.jvm")
@@ -51,6 +53,14 @@ subprojects {
 
 	tasks.withType<Jar> {
 		enabled = true
+		manifest {
+			attributes(
+				mapOf(
+					"Implementation-Title" to project.name,
+					"Implementation-Version" to project.version
+				)
+			)
+		}
 	}
 
 	tasks.withType<BootJar> {
@@ -60,6 +70,17 @@ subprojects {
 	java {
 		withJavadocJar()
 		withSourcesJar()
+	}
+
+	publishing {
+		publications {
+			create<MavenPublication>("maven") {
+				groupId = project.group as String
+				version = project.version as String
+
+				from(components["java"])
+			}
+		}
 	}
 
 }
