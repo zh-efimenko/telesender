@@ -163,4 +163,4 @@ telegram.filters.cancel.commands = "/cancel:cancel"   # list of commands (option
 
 ## Architecture
 
-![Handle requests](docs/The library's process.png "Handle requests")
+![Handle requests](docs/processing-diagram.png 'Handle requests')
