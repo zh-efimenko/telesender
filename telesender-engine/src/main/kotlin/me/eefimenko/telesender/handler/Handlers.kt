@@ -5,7 +5,9 @@ import me.eefimenko.telesender.handler.message.MessageHandlerStep
 /**
  * @author Yauheni Yefimenka
  */
-interface Handler {
+interface Handler
+
+interface HandlerCommands {
 
 	/**
 	 * The key is text of the command, 1-32 characters.
@@ -17,7 +19,7 @@ interface Handler {
 
 }
 
-interface MessageHandler : Handler {
+interface MessageHandler : Handler, HandlerCommands {
 
 	fun getSteps(): Map<String, MessageHandlerStep<*>>
 
@@ -31,7 +33,7 @@ interface MessageHandler : Handler {
 
 }
 
-interface CallbackQueryHandler : Handler {
+interface CallbackQueryHandler : Handler, HandlerCommands {
 
 	fun getProcess(): CallbackQueryProcessBlock
 
