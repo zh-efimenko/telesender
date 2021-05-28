@@ -1,5 +1,5 @@
 dependencies {
-	implementation(project(":telesender-core"))
+	api(project(":telesender-core"))
 
 	// DevUtil
 	developmentOnly("org.springframework.boot:spring-boot-devtools")

@@ -67,9 +67,14 @@ subprojects {
 		enabled = false
 	}
 
-	java {
-		withJavadocJar()
-		withSourcesJar()
+	val sourcesJar by tasks.registering(Jar::class) {
+		archiveClassifier.set("sources")
+		from(sourceSets.main.get().allSource)
+	}
+
+	val javadocJar by tasks.registering(Jar::class) {
+		archiveClassifier.set("javadoc")
+		from(tasks["javadoc"])
 	}
 
 	publishing {
@@ -79,6 +84,8 @@ subprojects {
 				version = project.version as String
 
 				from(components["java"])
+				artifact(sourcesJar.get())
+				artifact(javadocJar.get())
 			}
 		}
 	}
