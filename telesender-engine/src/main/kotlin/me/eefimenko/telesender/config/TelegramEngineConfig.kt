@@ -1,5 +1,6 @@
 package me.eefimenko.telesender.config
 
+import me.eefimenko.telesender.component.BotCommandRunner
 import me.eefimenko.telesender.component.DefaultTelegramListener
 import me.eefimenko.telesender.component.TelegramApi
 import me.eefimenko.telesender.component.TelegramListener
@@ -24,6 +25,10 @@ class TelegramEngineConfig {
 	@ConditionalOnMissingBean
 	@Bean
 	fun telegramListener(filters: List<TelegramFilter>): TelegramListener = DefaultTelegramListener(filters)
+
+	@Bean
+	fun botCommandRunner(telegramApi: TelegramApi, filters: List<TelegramFilter>): BotCommandRunner =
+		BotCommandRunner(telegramApi, filters)
 
 	@Bean
 	fun filterExceptionUtil(telegramApi: TelegramApi, properties: TelegramEngineProperties): FilterExceptionUtil =

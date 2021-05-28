@@ -4,12 +4,10 @@ import me.eefimenko.telesender.filter.TelegramFilter
 import me.eefimenko.telesender.model.telegram.common.BotCommand
 import me.eefimenko.telesender.model.telegram.send.SetMyCommandsMessage
 import org.springframework.boot.CommandLineRunner
-import org.springframework.stereotype.Component
 
 /**
  * @author Yauheni Yefimenka
  */
-@Component
 class BotCommandRunner(
 	private val telegramApi: TelegramApi,
 	private val filters: List<TelegramFilter>
