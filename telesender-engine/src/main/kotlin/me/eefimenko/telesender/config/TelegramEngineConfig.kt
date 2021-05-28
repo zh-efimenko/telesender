@@ -26,6 +26,10 @@ class TelegramEngineConfig {
 	fun telegramListener(filters: List<TelegramFilter>): TelegramListener = DefaultTelegramListener(filters)
 
 	@Bean
+	fun filterExceptionUtil(telegramApi: TelegramApi, properties: TelegramEngineProperties): FilterExceptionUtil =
+		FilterExceptionUtil(telegramApi, properties)
+
+	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.message.enabled"], matchIfMissing = true)
 	fun messageFilter(
 		telegramApi: TelegramApi,

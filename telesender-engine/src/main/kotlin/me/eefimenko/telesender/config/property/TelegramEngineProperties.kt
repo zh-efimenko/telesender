@@ -1,12 +1,12 @@
 package me.eefimenko.telesender.config.property
 
 import org.springframework.boot.context.properties.ConfigurationProperties
-import org.springframework.stereotype.Component
+import org.springframework.context.annotation.Configuration
 
 /**
  * @author Yauheni Yefimenka
  */
-@Component
+@Configuration
 @ConfigurationProperties("telegram")
 class TelegramEngineProperties(
 	var cancelFilter: CancelFilterConfig
@@ -19,7 +19,7 @@ class TelegramEngineProperties(
 		var chatId: Long = 0
 	)
 
-	@Component
+	@Configuration
 	@ConfigurationProperties("telegram.filters.cancel")
 	class CancelFilterConfig(
 		var enabled: Boolean = true,

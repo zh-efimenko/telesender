@@ -8,12 +8,10 @@ import me.eefimenko.telesender.model.telegram.recieve.PollAnswer
 import me.eefimenko.telesender.model.telegram.recieve.inline.CallbackQuery
 import me.eefimenko.telesender.model.telegram.send.TextSendMessage
 import mu.KotlinLogging
-import org.springframework.stereotype.Component
 
 /**
  * @author Yauheni Yefimenka
  */
-@Component
 class FilterExceptionUtil(
 	private val telegramApi: TelegramApi,
 	private val properties: TelegramEngineProperties
