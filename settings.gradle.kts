@@ -1,4 +1,4 @@
 rootProject.name = "telesender"
 
-include(":telesender-core")
-include(":telesender-engine")
+include(":telesender-core-starter")
+include(":telesender-engine-starter")
