@@ -1,5 +1,6 @@
-package me.eefimenko.telesender.component
+package me.eefimenko.telesender.component.impl
 
+import me.eefimenko.telesender.component.TelegramListener
 import me.eefimenko.telesender.filter.DefaultTelegramFilterChain
 import me.eefimenko.telesender.filter.TelegramFilter
 import me.eefimenko.telesender.filter.util.TelegramFilterOrderUtil
