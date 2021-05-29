@@ -20,7 +20,7 @@ subprojects {
 	apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 
 	group = "io.github.zh-efimenko"
-	version = "1.1.0-SNAPSHOT"
+	version = "1.1.0"
 	java.sourceCompatibility = JavaVersion.VERSION_11
 
 	repositories {
