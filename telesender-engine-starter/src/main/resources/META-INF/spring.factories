@@ -1,1 +1,1 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=me.eefimenko.telesender.TelesenderEngineApplication
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=io.github.telesender.TelesenderEngineApplication

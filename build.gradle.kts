@@ -19,7 +19,7 @@ subprojects {
 	apply(plugin = "org.jetbrains.kotlin.kapt")
 	apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 
-	group = "me.eefimenko.telesender"
+	group = "io.github.zh-efimenko"
 	version = "1.1.0-SNAPSHOT"
 	java.sourceCompatibility = JavaVersion.VERSION_11
 

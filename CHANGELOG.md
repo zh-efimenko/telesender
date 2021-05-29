@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Modules' names
-- Packages of some classes for filters
+- Packages and groupId
 
 ### Removed
 - hibernate-validator dependency
