@@ -1,7 +1,7 @@
 package me.eefimenko.telesender.filter
 
-import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.component.TelegramApi
+import me.eefimenko.telesender.filter.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.filter.util.FilterExceptionUtil
 import me.eefimenko.telesender.handler.MessageHandler
 import me.eefimenko.telesender.handler.message.MessageHandlerState

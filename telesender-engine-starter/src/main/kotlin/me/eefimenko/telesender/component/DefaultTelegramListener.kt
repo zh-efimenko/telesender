@@ -2,8 +2,8 @@ package me.eefimenko.telesender.component
 
 import me.eefimenko.telesender.filter.DefaultTelegramFilterChain
 import me.eefimenko.telesender.filter.TelegramFilter
+import me.eefimenko.telesender.filter.util.TelegramFilterOrderUtil
 import me.eefimenko.telesender.model.event.TelegramUpdateEvent
-import me.eefimenko.telesender.util.TelegramFilterOrderUtil
 
 /**
  * @author Yauheni Yefimenka

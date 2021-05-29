@@ -1,4 +1,4 @@
-package me.eefimenko.telesender.annotation
+package me.eefimenko.telesender.filter.annotation
 
 /**
  * @author Yauheni Yefimenka

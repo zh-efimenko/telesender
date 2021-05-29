@@ -1,7 +1,7 @@
-package me.eefimenko.telesender.util
+package me.eefimenko.telesender.filter.util
 
-import me.eefimenko.telesender.annotation.TelegramFilterOrder
 import me.eefimenko.telesender.filter.TelegramFilter
+import me.eefimenko.telesender.filter.annotation.TelegramFilterOrder
 import org.springframework.core.annotation.AnnotationUtils
 
 /**

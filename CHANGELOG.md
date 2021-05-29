@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Bean BotCommandRunner - initializer of bot's commands at the start.
 
+### Changed
+- Modules' names
+- Packages of some classes for filters
+
 ### Removed
 - hibernate-validator dependency
 - spring-boot-devtools dependency
