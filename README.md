@@ -4,6 +4,29 @@
 
 The main aim this library it's simplify the creation process any telegram's bots.
 
+##  Connecting
+
+```
+repositories {
+    mavenCentral()
+}
+```
+
+Gradle: 
+
+```
+implementation("io.github.zh-efimenko.telesender:telesender-engine-starter:1.1.0")
+```
+
+Maven:
+
+```
+<dependency>
+    <groupId>io.github.zh-efimenko.telesender</groupId>
+    <artifactId>telesender-engine-starter</artifactId>
+    <version>1.1.0</version>
+</dependency>
+```
 
 ## Using
 
