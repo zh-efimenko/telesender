@@ -3,6 +3,7 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 plugins {
 	java
 	`maven-publish`
+	signing
 	id("org.springframework.boot") version "2.4.1" apply false
 	id("io.spring.dependency-management") version "1.0.10.RELEASE" apply false
 	kotlin("jvm") version "1.5.10" apply false
@@ -10,16 +11,25 @@ plugins {
 	kotlin("plugin.spring") version "1.5.10" apply false
 }
 
+project(":telesender-core-starter") {
+	description = "Low-level API for telegram bots on Kotlin."
+}
+
+project(":telesender-engine-starter") {
+	description = "Starter for simplify the creation process of any telegram bots on Kotlin."
+}
+
 subprojects {
 	apply(plugin = "java")
 	apply(plugin = "maven-publish")
+	apply(plugin = "signing")
 	apply(plugin = "org.springframework.boot")
 	apply(plugin = "io.spring.dependency-management")
 	apply(plugin = "org.jetbrains.kotlin.jvm")
 	apply(plugin = "org.jetbrains.kotlin.kapt")
 	apply(plugin = "org.jetbrains.kotlin.plugin.spring")
 
-	group = "io.github.zh-efimenko"
+	group = "io.github.zh-efimenko.telesender"
 	version = "1.1.0"
 	java.sourceCompatibility = JavaVersion.VERSION_11
 
@@ -67,27 +77,52 @@ subprojects {
 		enabled = false
 	}
 
-	val sourcesJar by tasks.registering(Jar::class) {
-		archiveClassifier.set("sources")
-		from(sourceSets.main.get().allSource)
-	}
-
-	val javadocJar by tasks.registering(Jar::class) {
-		archiveClassifier.set("javadoc")
-		from(tasks["javadoc"])
+	java {
+		withJavadocJar()
+		withSourcesJar()
 	}
 
 	publishing {
 		publications {
-			create<MavenPublication>("maven") {
-				groupId = project.group as String
-				version = project.version as String
-
+			create<MavenPublication>("mavenKotlin") {
 				from(components["java"])
-				artifact(sourcesJar.get())
-				artifact(javadocJar.get())
+				pom {
+					name.set(project.name)
+					description.set(project.description)
+					url.set("https://zh-efimenko.github.io/telesender/")
+					licenses {
+						license {
+							name.set("GNU General Public License, version 3")
+							url.set("https://www.gnu.org/licenses/gpl-3.0.html")
+						}
+					}
+					developers {
+						developer {
+							id.set("zh-efimenko")
+							name.set("Yauheni Yefimenka")
+							email.set("zh.efimenko@gmail.com")
+						}
+					}
+					scm {
+						connection.set("scm:git:https://github.com/zh-efimenko/telesender.git")
+						developerConnection.set("scm:git:git@github.com:zh-efimenko/telesender.git")
+						url.set("https://zh-efimenko.github.io/telesender/")
+					}
+				}
+				repositories {
+					maven {
+						credentials(PasswordCredentials::class)
+						val releasesRepoUrl = uri("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+						val snapshotsRepoUrl = uri("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+						url = uri(if (version.toString().endsWith("SNAPSHOT")) snapshotsRepoUrl else releasesRepoUrl)
+					}
+				}
 			}
 		}
+	}
+
+	signing {
+		sign(publishing.publications["mavenKotlin"])
 	}
 
 }
