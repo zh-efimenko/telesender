@@ -9,7 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class InlineKeyboardButton(
+class InlineKeyboardButton @JvmOverloads constructor(
 
 	/**
 	 * Label text on the button
@@ -56,4 +56,29 @@ class InlineKeyboardButton(
 	@get:JsonProperty("pay")
 	val pay: Boolean? = false
 
-)
+) {
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is InlineKeyboardButton) return false
+
+		if (text != other.text) return false
+		if (url != other.url) return false
+		if (callback_data != other.callback_data) return false
+		if (switch_inline_query != other.switch_inline_query) return false
+		if (switch_inline_query_current_chat != other.switch_inline_query_current_chat) return false
+		if (pay != other.pay) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = text.hashCode()
+		result = 31 * result + (url?.hashCode() ?: 0)
+		result = 31 * result + (callback_data?.hashCode() ?: 0)
+		result = 31 * result + (switch_inline_query?.hashCode() ?: 0)
+		result = 31 * result + (switch_inline_query_current_chat?.hashCode() ?: 0)
+		result = 31 * result + (pay?.hashCode() ?: 0)
+		return result
+	}
+}

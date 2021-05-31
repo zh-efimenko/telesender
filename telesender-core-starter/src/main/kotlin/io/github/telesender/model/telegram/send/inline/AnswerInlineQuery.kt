@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class AnswerInlineQuery(
+data class AnswerInlineQuery @JvmOverloads constructor(
 
 	/**
 	 * Unique identifier for the answered query
@@ -35,7 +35,7 @@ data class AnswerInlineQuery(
 	 * By default, results may be returned to any user who sends the same query
 	 */
 	@get:JsonProperty("is_personal")
-	val isPersonal	: Boolean? = null,
+	val isPersonal: Boolean? = null,
 	/**
 	 * 	Optional. Pass the offset that a client should send in the next query with the same text to receive more
 	 * 	results. Pass an empty string if there are no more results or if you don't support pagination.

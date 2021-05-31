@@ -15,7 +15,7 @@ import java.io.File
 /**
  * @author Yauheni Yefimenka
  */
-abstract class InputMedia(
+abstract class InputMedia @JvmOverloads constructor(
 
 	/**
 	 * Type of the result, must be photo, document, video, audio or animation
@@ -96,5 +96,33 @@ abstract class InputMedia(
 		override fun serialize(value: InputMedia, gen: JsonGenerator, provider: SerializerProvider) {
 			gen.writeString(jacksonObjectMapper().writeValueAsString(value))
 		}
+	}
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is InputMedia) return false
+
+		if (type != other.type) return false
+		if (caption != other.caption) return false
+		if (parseMode != other.parseMode) return false
+		if (captionEntities != other.captionEntities) return false
+		if (media != other.media) return false
+		if (mediaFile != other.mediaFile) return false
+		if (thumb != other.thumb) return false
+		if (thumbFile != other.thumbFile) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = type.hashCode()
+		result = 31 * result + (caption?.hashCode() ?: 0)
+		result = 31 * result + (parseMode?.hashCode() ?: 0)
+		result = 31 * result + (captionEntities?.hashCode() ?: 0)
+		result = 31 * result + media.hashCode()
+		result = 31 * result + (mediaFile?.hashCode() ?: 0)
+		result = 31 * result + (thumb?.hashCode() ?: 0)
+		result = 31 * result + (thumbFile?.hashCode() ?: 0)
+		return result
 	}
 }

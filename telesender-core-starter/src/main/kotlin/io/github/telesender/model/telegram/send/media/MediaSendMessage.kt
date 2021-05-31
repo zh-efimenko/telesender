@@ -13,7 +13,7 @@ import java.io.File
 /**
  * @author Yauheni Yefimenka
  */
-abstract class MediaSendMessage(
+abstract class MediaSendMessage @JvmOverloads constructor(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel
@@ -116,4 +116,39 @@ abstract class MediaSendMessage(
 		}
 	}
 
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is MediaSendMessage) return false
+
+		if (chatId != other.chatId) return false
+		if (caption != other.caption) return false
+		if (parseMode != other.parseMode) return false
+		if (captionEntities != other.captionEntities) return false
+		if (disableNotification != other.disableNotification) return false
+		if (replyToMessageId != other.replyToMessageId) return false
+		if (allowSendingWithoutReply != other.allowSendingWithoutReply) return false
+		if (replyMarkup != other.replyMarkup) return false
+		if (media != other.media) return false
+		if (mediaFile != other.mediaFile) return false
+		if (thumb != other.thumb) return false
+		if (thumbFile != other.thumbFile) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = chatId.hashCode()
+		result = 31 * result + (caption?.hashCode() ?: 0)
+		result = 31 * result + (parseMode?.hashCode() ?: 0)
+		result = 31 * result + (captionEntities?.hashCode() ?: 0)
+		result = 31 * result + (disableNotification?.hashCode() ?: 0)
+		result = 31 * result + (replyToMessageId?.hashCode() ?: 0)
+		result = 31 * result + (allowSendingWithoutReply?.hashCode() ?: 0)
+		result = 31 * result + (replyMarkup?.hashCode() ?: 0)
+		result = 31 * result + media.hashCode()
+		result = 31 * result + (mediaFile?.hashCode() ?: 0)
+		result = 31 * result + (thumb?.hashCode() ?: 0)
+		result = 31 * result + (thumbFile?.hashCode() ?: 0)
+		return result
+	}
 }

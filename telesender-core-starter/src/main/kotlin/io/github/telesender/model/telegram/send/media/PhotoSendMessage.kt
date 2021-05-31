@@ -10,7 +10,7 @@ import io.github.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class PhotoSendMessage(
+class PhotoSendMessage @JvmOverloads constructor(
 
 	chatId: Long,
 	photo: Any,
@@ -37,5 +37,16 @@ class PhotoSendMessage(
 
 	@JsonProperty("photo")
 	fun getPhoto(): String = media
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is PhotoSendMessage) return false
+		if (!super.equals(other)) return false
+		return true
+	}
+
+	override fun hashCode(): Int {
+		return super.hashCode()
+	}
 
 }

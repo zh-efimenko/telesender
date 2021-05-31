@@ -8,7 +8,7 @@ import io.github.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class VideoNoteSendMessage(
+class VideoNoteSendMessage @JvmOverloads constructor(
 
 	chatId: Long,
 	videoNote: Any,
@@ -47,4 +47,21 @@ class VideoNoteSendMessage(
 	@JsonProperty("video_note")
 	fun getVideoNote(): String = media
 
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is VideoNoteSendMessage) return false
+		if (!super.equals(other)) return false
+
+		if (duration != other.duration) return false
+		if (length != other.length) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = super.hashCode()
+		result = 31 * result + (duration ?: 0)
+		result = 31 * result + (length ?: 0)
+		return result
+	}
 }

@@ -11,7 +11,7 @@ import io.github.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class CopySendMessage(
+data class CopySendMessage @JvmOverloads constructor(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel

@@ -11,7 +11,7 @@ import io.github.telesender.model.telegram.send.dictionary.ParseMode
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class InputMediaAudio(
+class InputMediaAudio @JvmOverloads constructor(
 	media: Any,
 	thumb: Any? = null,
 	caption: String? = null,
@@ -36,4 +36,25 @@ class InputMediaAudio(
 	@get:JsonProperty("title")
 	val title: String? = null
 
-) : InputMedia(InputMediaType.AUDIO, media, thumb, caption, parseMode, captionEntities)
+) : InputMedia(InputMediaType.AUDIO, media, thumb, caption, parseMode, captionEntities) {
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is InputMediaAudio) return false
+		if (!super.equals(other)) return false
+
+		if (duration != other.duration) return false
+		if (performer != other.performer) return false
+		if (title != other.title) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = super.hashCode()
+		result = 31 * result + (duration ?: 0)
+		result = 31 * result + (performer?.hashCode() ?: 0)
+		result = 31 * result + (title?.hashCode() ?: 0)
+		return result
+	}
+}

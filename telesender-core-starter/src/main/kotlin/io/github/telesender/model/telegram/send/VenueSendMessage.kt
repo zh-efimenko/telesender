@@ -8,7 +8,7 @@ import io.github.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class VenueSendMessage(
+data class VenueSendMessage @JvmOverloads constructor(
 
 	/**
 	 * Unique identifier for the target chat or username of the target channel

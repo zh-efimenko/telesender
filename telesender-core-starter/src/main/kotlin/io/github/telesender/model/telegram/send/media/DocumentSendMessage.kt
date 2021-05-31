@@ -10,7 +10,7 @@ import io.github.telesender.model.telegram.send.keyboard.ReplyMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class DocumentSendMessage(
+class DocumentSendMessage @JvmOverloads constructor(
 
 	chatId: Long,
 	document: Any,
@@ -46,4 +46,19 @@ class DocumentSendMessage(
 	@JsonProperty("document")
 	fun getDocument(): String = media
 
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is DocumentSendMessage) return false
+		if (!super.equals(other)) return false
+
+		if (disableContentTypeDetection != other.disableContentTypeDetection) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = super.hashCode()
+		result = 31 * result + (disableContentTypeDetection?.hashCode() ?: 0)
+		return result
+	}
 }

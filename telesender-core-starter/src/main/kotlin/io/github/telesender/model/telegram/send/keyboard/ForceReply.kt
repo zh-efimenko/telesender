@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class ForceReply(
+class ForceReply @JvmOverloads constructor(
 
 	/**
 	 * Shows reply interface to the user, as if they manually selected the bot's message and tapped 'Reply'
@@ -23,4 +23,21 @@ class ForceReply(
 	@get:JsonProperty("selective")
 	val selective: Boolean? = null
 
-) : ReplyMarkup
+) : ReplyMarkup {
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is ForceReply) return false
+
+		if (forceReply != other.forceReply) return false
+		if (selective != other.selective) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = forceReply.hashCode()
+		result = 31 * result + (selective?.hashCode() ?: 0)
+		return result
+	}
+}

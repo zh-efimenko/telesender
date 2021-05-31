@@ -10,7 +10,7 @@ import io.github.telesender.model.telegram.send.keyboard.InlineKeyboardMarkup
 /**
  * @author Yauheni Yefimenka
  */
-abstract class InlineQueryResult(
+abstract class InlineQueryResult @JvmOverloads constructor(
 
 	/**
 	 * 	Type of the result.
@@ -60,5 +60,25 @@ abstract class InlineQueryResult(
 				generator.writeString(value.name.lowercase())
 			}
 		}
+	}
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is InlineQueryResult) return false
+
+		if (type != other.type) return false
+		if (id != other.id) return false
+		if (inputMessageContent != other.inputMessageContent) return false
+		if (replyMarkup != other.replyMarkup) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = type.hashCode()
+		result = 31 * result + id.hashCode()
+		result = 31 * result + (inputMessageContent?.hashCode() ?: 0)
+		result = 31 * result + (replyMarkup?.hashCode() ?: 0)
+		return result
 	}
 }

@@ -24,4 +24,16 @@ class InlineKeyboardMarkup(
 		private const val DEFAULT_COLUMNS_NUMBER = 2
 	}
 
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is InlineKeyboardMarkup) return false
+
+		if (inlineKeyboard != other.inlineKeyboard) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		return inlineKeyboard.hashCode()
+	}
 }

@@ -12,7 +12,7 @@ import io.github.telesender.model.telegram.send.dictionary.ParseMode
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class InputTextMessageContent(
+class InputTextMessageContent @JvmOverloads constructor(
 
 	/**
 	 * Unique identifier for this result, 1-64 Bytes.
@@ -39,4 +39,25 @@ class InputTextMessageContent(
 	@get:JsonProperty("disable_web_page_preview")
 	val disableWebPagePreview: Boolean? = null
 
-) : InputMessageContent
+) : InputMessageContent {
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is InputTextMessageContent) return false
+
+		if (messageText != other.messageText) return false
+		if (parseMode != other.parseMode) return false
+		if (entities != other.entities) return false
+		if (disableWebPagePreview != other.disableWebPagePreview) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = messageText.hashCode()
+		result = 31 * result + (parseMode?.hashCode() ?: 0)
+		result = 31 * result + (entities?.hashCode() ?: 0)
+		result = 31 * result + (disableWebPagePreview?.hashCode() ?: 0)
+		return result
+	}
+}

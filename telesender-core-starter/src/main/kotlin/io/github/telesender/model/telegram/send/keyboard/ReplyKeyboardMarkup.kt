@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class ReplyKeyboardMarkup(
+class ReplyKeyboardMarkup @JvmOverloads constructor(
 	answers: List<KeyboardButton>,
 	columns: Int = DEFAULT_COLUMNS_NUMBER,
 
@@ -53,4 +53,23 @@ class ReplyKeyboardMarkup(
 		private const val DEFAULT_COLUMNS_NUMBER = 2
 	}
 
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is ReplyKeyboardMarkup) return false
+
+		if (resizeKeyboard != other.resizeKeyboard) return false
+		if (oneTimeKeyboard != other.oneTimeKeyboard) return false
+		if (selective != other.selective) return false
+		if (keyboard != other.keyboard) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = resizeKeyboard?.hashCode() ?: 0
+		result = 31 * result + (oneTimeKeyboard?.hashCode() ?: 0)
+		result = 31 * result + (selective?.hashCode() ?: 0)
+		result = 31 * result + keyboard.hashCode()
+		return result
+	}
 }

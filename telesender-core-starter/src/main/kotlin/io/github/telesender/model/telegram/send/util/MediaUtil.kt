@@ -1,3 +1,5 @@
+@file:JvmName("MediaUtil")
+
 package io.github.telesender.model.telegram.send.util
 
 import java.io.File

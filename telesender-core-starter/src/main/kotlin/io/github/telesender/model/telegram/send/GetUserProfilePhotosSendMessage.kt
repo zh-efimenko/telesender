@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-data class GetUserProfilePhotosSendMessage(
+data class GetUserProfilePhotosSendMessage @JvmOverloads constructor(
 
 	/**
 	 * Unique identifier of the target user

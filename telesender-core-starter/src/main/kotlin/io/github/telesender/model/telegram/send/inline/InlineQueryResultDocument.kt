@@ -18,7 +18,7 @@ import io.github.telesender.model.telegram.send.keyboard.InlineKeyboardMarkup
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class InlineQueryResultDocument(
+class InlineQueryResultDocument @JvmOverloads constructor(
 	type: Type,
 	id: String,
 
@@ -99,5 +99,39 @@ class InlineQueryResultDocument(
 				generator.writeString(value.value)
 			}
 		}
+	}
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is InlineQueryResultDocument) return false
+		if (!super.equals(other)) return false
+
+		if (title != other.title) return false
+		if (documentUrl != other.documentUrl) return false
+		if (mimeType != other.mimeType) return false
+		if (caption != other.caption) return false
+		if (parseMode != other.parseMode) return false
+		if (captionEntities != other.captionEntities) return false
+		if (description != other.description) return false
+		if (thumbUrl != other.thumbUrl) return false
+		if (thumbWidth != other.thumbWidth) return false
+		if (thumbHeight != other.thumbHeight) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = super.hashCode()
+		result = 31 * result + title.hashCode()
+		result = 31 * result + documentUrl.hashCode()
+		result = 31 * result + mimeType.hashCode()
+		result = 31 * result + (caption?.hashCode() ?: 0)
+		result = 31 * result + (parseMode?.hashCode() ?: 0)
+		result = 31 * result + (captionEntities?.hashCode() ?: 0)
+		result = 31 * result + (description?.hashCode() ?: 0)
+		result = 31 * result + (thumbUrl?.hashCode() ?: 0)
+		result = 31 * result + (thumbWidth ?: 0)
+		result = 31 * result + (thumbHeight ?: 0)
+		return result
 	}
 }

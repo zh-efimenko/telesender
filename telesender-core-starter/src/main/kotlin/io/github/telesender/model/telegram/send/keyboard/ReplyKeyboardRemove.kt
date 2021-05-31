@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class ReplyKeyboardRemove(
+class ReplyKeyboardRemove @JvmOverloads constructor(
 
 	/**
 	 * Requests clients to remove the custom keyboard (user will not be able to summon this keyboard;
@@ -27,4 +27,21 @@ class ReplyKeyboardRemove(
 	@get:JsonProperty("selective")
 	val selective: Boolean? = null
 
-) : ReplyMarkup
+) : ReplyMarkup {
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is ReplyKeyboardRemove) return false
+
+		if (removeKeyboard != other.removeKeyboard) return false
+		if (selective != other.selective) return false
+
+		return true
+	}
+
+	override fun hashCode(): Int {
+		var result = removeKeyboard.hashCode()
+		result = 31 * result + (selective?.hashCode() ?: 0)
+		return result
+	}
+}

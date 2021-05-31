@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Publishing to maven central
 
+### Changed
+- Improve the interop of library code with Java clients
+
 ## [1.1.0] - 2021-05-29
 ### Added
 - Bean BotCommandRunner - initializer of bot's commands at the start.

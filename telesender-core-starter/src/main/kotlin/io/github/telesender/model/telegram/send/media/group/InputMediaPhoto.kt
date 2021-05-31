@@ -10,9 +10,21 @@ import io.github.telesender.model.telegram.send.dictionary.ParseMode
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-class InputMediaPhoto(
+class InputMediaPhoto @JvmOverloads constructor(
 	media: Any,
 	caption: String? = null,
 	parseMode: ParseMode? = null,
 	captionEntities: List<MessageEntity>? = null
-) : InputMedia(InputMediaType.PHOTO, media, null, caption, parseMode, captionEntities)
+) : InputMedia(InputMediaType.PHOTO, media, null, caption, parseMode, captionEntities) {
+
+	override fun equals(other: Any?): Boolean {
+		if (this === other) return true
+		if (other !is InputMediaPhoto) return false
+		if (!super.equals(other)) return false
+		return true
+	}
+
+	override fun hashCode(): Int {
+		return super.hashCode()
+	}
+}

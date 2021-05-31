@@ -1,6 +1,6 @@
 package io.github.telesender.model.telegram.common
 
-import com.fasterxml.jackson.annotation.JsonAutoDetect
+import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonInclude
 import com.fasterxml.jackson.annotation.JsonProperty
 import io.github.telesender.model.telegram.recieve.User
@@ -9,8 +9,7 @@ import io.github.telesender.model.telegram.recieve.User
  * @author Yauheni Yefimenka
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-@JsonAutoDetect(fieldVisibility = JsonAutoDetect.Visibility.ANY)
-data class MessageEntity(
+data class MessageEntity @JvmOverloads constructor(
 
 	/**
 	 * Type of the entity. Can be “mention” (@username), “hashtag” (#hashtag), “cashtag” ($USD),
@@ -19,37 +18,58 @@ data class MessageEntity(
 	 * “underline” (underlined text), “strikethrough” (strikethrough text), “code” (monowidth string),
 	 * “pre” (monowidth block), “text_link” (for clickable text URLs), “text_mention” (for users without usernames).
 	 */
-	@JsonProperty("type")
+	@get:JsonProperty("type")
 	val type: String,
 
 	/**
 	 * Offset in UTF-16 code units to the start of the entity.
 	 */
-	@JsonProperty("offset")
+	@get:JsonProperty("offset")
 	val offset: Int,
 
 	/**
 	 * Length of the entity in UTF-16 code units.
 	 */
-	@JsonProperty("length")
+	@get:JsonProperty("length")
 	val length: Int,
 
 	/**
 	 * Optional. For “text_link” only, url that will be opened after user taps on the text.
 	 */
-	@JsonProperty("url")
+	@get:JsonProperty("url")
 	val url: String? = null,
 
 	/**
 	 * Optional. For “text_mention” only, the mentioned user.
 	 */
-	@JsonProperty("user")
+	@get:JsonProperty("user")
 	val user: User? = null,
 
 	/**
 	 * Optional. For “pre” only, the programming language of the entity text.
 	 */
-	@JsonProperty("language")
+	@get:JsonProperty("language")
 	val language: String? = null
 
-)
+) {
+
+	companion object {
+		@JvmStatic
+		@JsonCreator
+		fun of(
+			@JsonProperty("type")
+			type: String,
+			@JsonProperty("offset")
+			offset: Int,
+			@JsonProperty("length")
+			length: Int,
+			@JsonProperty("url")
+			url: String? = null,
+			@JsonProperty("user")
+			user: User? = null,
+			@JsonProperty("language")
+			language: String? = null
+		): MessageEntity = MessageEntity(type, offset, length, url, user, language)
+	}
+
+}
