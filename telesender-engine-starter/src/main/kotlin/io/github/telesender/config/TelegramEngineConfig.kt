@@ -8,6 +8,7 @@ import io.github.telesender.component.impl.DefaultTelegramListener
 import io.github.telesender.config.property.TelegramEngineProperties
 import io.github.telesender.filter.*
 import io.github.telesender.filter.util.FilterExceptionUtil
+import io.github.telesender.filter.util.impl.DefaultFilterExceptionUtil
 import io.github.telesender.handler.CallbackQueryHandler
 import io.github.telesender.handler.MessageHandler
 import io.github.telesender.handler.PollAnswerHandler
@@ -32,9 +33,10 @@ class TelegramEngineConfig {
 	fun botCommandRunner(telegramApi: TelegramApi, filters: List<TelegramFilter>): BotCommandRunner =
 		DefaultBotCommandRunner(telegramApi, filters)
 
+	@ConditionalOnMissingBean
 	@Bean
 	fun filterExceptionUtil(telegramApi: TelegramApi, properties: TelegramEngineProperties): FilterExceptionUtil =
-		FilterExceptionUtil(telegramApi, properties)
+		DefaultFilterExceptionUtil(telegramApi, properties)
 
 	@Bean
 	@ConditionalOnProperty(name = ["telegram.filters.message.enabled"], matchIfMissing = true)

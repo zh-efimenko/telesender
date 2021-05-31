@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - Publishing to maven central
+- Interface FilterExceptionUtil for flexibility, clients can override 
+  of logic of handling exceptions
 
 ### Changed
 - Improve the interop of library code with Java clients
