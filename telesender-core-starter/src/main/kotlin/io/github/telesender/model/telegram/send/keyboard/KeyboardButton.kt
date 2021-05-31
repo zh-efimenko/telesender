@@ -32,7 +32,14 @@ class KeyboardButton @JvmOverloads constructor(
 	 * Available in private chats only
 	 */
 	@get:JsonProperty("request_location")
-	val requestLocation: Boolean? = null
+	val requestLocation: Boolean? = null,
+
+	/**
+	 * Optional. If specified, the user will be asked to create a poll and send it to the bot
+	 * when the button is pressed. Available in private chats only
+	 */
+	@get:JsonProperty("request_poll")
+	val requestPoll: KeyboardButtonPollType? = null
 
 ) {
 
