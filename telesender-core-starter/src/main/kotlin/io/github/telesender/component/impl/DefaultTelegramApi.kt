@@ -3,6 +3,7 @@ package io.github.telesender.component.impl
 import com.fasterxml.jackson.core.type.TypeReference
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import io.github.telesender.component.TelegramApi
+import io.github.telesender.config.property.TelegramCoreProperties
 import io.github.telesender.model.exception.TelegramApiException
 import io.github.telesender.model.telegram.common.BotCommand
 import io.github.telesender.model.telegram.recieve.*
@@ -10,10 +11,8 @@ import io.github.telesender.model.telegram.send.*
 import io.github.telesender.model.telegram.send.inline.AnswerInlineQuery
 import io.github.telesender.model.telegram.send.media.*
 import io.github.telesender.model.telegram.send.media.group.MediaGroupSendMessage
-import kong.unirest.ContentType
-import kong.unirest.GenericType
-import kong.unirest.HttpResponse
-import kong.unirest.UnirestInstance
+import kong.unirest.*
+import kong.unirest.jackson.JacksonObjectMapper
 import mu.KotlinLogging
 import org.apache.http.HttpHeaders
 
@@ -21,8 +20,15 @@ import org.apache.http.HttpHeaders
  * @author Yauheni Yefimenka
  */
 class DefaultTelegramApi(
-	private val unirest: UnirestInstance
+	properties: TelegramCoreProperties
 ) : TelegramApi {
+
+	private val unirest: UnirestInstance by lazy {
+		val instance = Unirest.primaryInstance()
+		instance.config().objectMapper = JacksonObjectMapper()
+		instance.config().defaultBaseUrl("https://api.telegram.org/bot${properties.accessToken}")
+		instance
+	}
 
 	private val log = KotlinLogging.logger {}
 
@@ -317,6 +323,17 @@ class DefaultTelegramApi(
 		val response = unirest
 			.get("/getMyCommands")
 			.asObject(object : GenericType<Response<List<BotCommand>>>() {})
+
+		return this.handleResponse(response)
+	}
+
+	override fun getFile(message: GetFileMessage): File {
+		val request = unirest
+			.post("/getFile")
+			.header(HttpHeaders.CONTENT_TYPE, ContentType.APPLICATION_JSON.mimeType)
+			.body(message)
+		val response = request
+			.asObject(object : GenericType<Response<File>>() {})
 
 		return this.handleResponse(response)
 	}

@@ -8,10 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Publishing to maven central
 - Interface FilterExceptionUtil for flexibility, clients can override 
-  of logic of handling exceptions
+  of logic of handling exceptions 
+- KeyboardButtonPollType field of KeyboardButton
+- getFile method
 
 ### Changed
 - Improve the interop of library code with Java clients
+
+### Removed
+- UnirestInstance bean
 
 ## [1.1.0] - 2021-05-29
 ### Added
